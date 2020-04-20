@@ -4703,7 +4703,8 @@ body {
     margin-bottom: 1.5rem !important; }
   body figure, body .imggroup {
     width: 100%;
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    border: 3px solid #dee2e6; }
     @media (min-width: 768px) and (max-width: 1023.98px) {
       body figure, body .imggroup {
         margin-bottom: 36px; } }
@@ -4719,7 +4720,8 @@ body {
     body figure figcaption, body figure .caption, body .imggroup figcaption, body .imggroup .caption {
       color: #212d39;
       min-height: 15px;
-      margin-top: 15px; }
+      margin-top: 15px;
+      padding: 12px; }
       @media (min-width: 768px) {
         body figure figcaption, body figure .caption, body .imggroup figcaption, body .imggroup .caption {
           text-align: left !important;
@@ -4781,6 +4783,134 @@ body {
     @media (min-width: 768px) {
       body .start-info {
         margin-bottom: 45px; } }
+  body .generisk-ramme {
+    color: #212d39 !important;
+    background-color: #e4f0da !important;
+    border: 1px solid #B1C900 !important;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    margin-bottom: 30px;
+    font-size: 17.82px;
+    font-family: Arial, sans-serif;
+    zoom: 1; }
+    body .generisk-ramme .sentence {
+      color: inherit !important; }
+    @media (min-width: 640px) and (max-width: 767.98px) {
+      body .generisk-ramme {
+        padding: 30px;
+        margin-bottom: 36px; } }
+    @media (min-width: 768px) {
+      body .generisk-ramme {
+        padding: 35px;
+        margin-bottom: 45px; } }
+    @media (max-width: 639.98px) {
+      body .generisk-ramme {
+        overflow-wrap: break-word; } }
+    body .generisk-ramme.lead {
+      font-size: 26.73px; }
+    @media (max-width: 639.98px) {
+      body .generisk-ramme {
+        overflow-wrap: break-word; } }
+    @media (min-width: 768px) and (max-width: 1023.98px) {
+      body .generisk-ramme {
+        margin-bottom: 36px;
+        font-size: 16.2px;
+        font-family: Arial, sans-serif;
+        zoom: 1; }
+        body .generisk-ramme.lead {
+          font-size: 24.3px; } }
+  @media (min-width: 768px) and (max-width: 1023.98px) and (max-width: 639.98px) {
+    body .generisk-ramme {
+      overflow-wrap: break-word; } }
+    @media (min-width: 1024px) {
+      body .generisk-ramme {
+        margin-bottom: 45px;
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        zoom: 1; }
+        body .generisk-ramme.lead {
+          font-size: 27px; } }
+  @media (min-width: 1024px) and (max-width: 639.98px) {
+    body .generisk-ramme {
+      overflow-wrap: break-word; } }
+  body .ramme {
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px; }
+    body .ramme .sentence {
+      color: inherit !important; }
+    @media (min-width: 640px) and (max-width: 767.98px) {
+      body .ramme {
+        padding: 30px;
+        margin-bottom: 36px; } }
+    @media (min-width: 768px) {
+      body .ramme {
+        padding: 35px;
+        margin-bottom: 45px; } }
+    body .ramme.bg-red {
+      color: #212d39 !important;
+      background-color: #f0dae4 !important;
+      border: 1px solid #bd5b87 !important; }
+    body .ramme.bg-blue {
+      color: #212d39 !important;
+      background-color: #dae4f0 !important;
+      border: 1px solid #5b87bd !important; }
+    body .ramme.bg-yellow {
+      color: #212d39 !important;
+      background-color: #eff0da !important;
+      border: 1px solid #b8bd5b !important; }
+    body .ramme.bg-gray {
+      color: #212d39 !important;
+      background-color: #dee2e6 !important;
+      border: 1px solid #788999 !important; }
+    body .ramme.bg-beige {
+      color: #212d39 !important;
+      background-color: #ffe8c4 !important;
+      border: 1px solid #ffa212 !important; }
+  body ol, body ul {
+    padding-inline-start: 0;
+    margin-left: 45px; }
+    @media (min-width: 640px) and (max-width: 767.98px) {
+      body ol, body ul {
+        margin-bottom: 22.5px; } }
+    @media (min-width: 768px) and (max-width: 1023.98px) {
+      body ol, body ul {
+        margin-bottom: 27px; } }
+    @media (min-width: 1024px) {
+      body ol, body ul {
+        margin-bottom: 33.75px; } }
+    body ol li, body ul li {
+      margin-left: 0;
+      margin-bottom: 8px; }
+      @media (min-width: 640px) and (max-width: 767.98px) {
+        body ol li, body ul li {
+          margin-bottom: 10px; } }
+      @media (min-width: 768px) {
+        body ol li, body ul li {
+          margin-bottom: 12px; } }
+      body ol li ol, body ol li ul, body ul li ol, body ul li ul {
+        margin-left: 30px !important; }
+    body ol.plain, body ul.plain {
+      list-style-type: none; }
+  body section.poem p, body section.poem #content blockquote, #content body section.poem blockquote, body section.poem blockquote, body section.poem div.oppgaver-li-oppgavetekst, body section.poem div.underoppgaver-li-oppgavetekst, body section.poem div.docauthor {
+    margin-bottom: 8px; }
+    @media (min-width: 640px) and (max-width: 767.98px) {
+      body section.poem p, body section.poem #content blockquote, #content body section.poem blockquote, body section.poem blockquote, body section.poem div.oppgaver-li-oppgavetekst, body section.poem div.underoppgaver-li-oppgavetekst, body section.poem div.docauthor {
+        margin-bottom: 10px; } }
+    @media (min-width: 768px) {
+      body section.poem p, body section.poem #content blockquote, #content body section.poem blockquote, body section.poem blockquote, body section.poem div.oppgaver-li-oppgavetekst, body section.poem div.underoppgaver-li-oppgavetekst, body section.poem div.docauthor {
+        margin-bottom: 12px; } }
+  body section.poem .linegroup {
+    margin-bottom: 8px; }
+    @media (min-width: 640px) and (max-width: 767.98px) {
+      body section.poem .linegroup {
+        margin-bottom: 10px; } }
+    @media (min-width: 768px) {
+      body section.poem .linegroup {
+        margin-bottom: 12px; } }
+    body section.poem .linegroup .line {
+      margin-bottom: 0; }
 
 /* End Statped.SCSS */
 
