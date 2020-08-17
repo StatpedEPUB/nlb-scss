@@ -1,4 +1,4 @@
-/*! NLB Stylesheets | v1.0.3 */
+/*! NLB Stylesheets */
 
 @charset "UTF-8";
 /* Begin Core.SCSS */
@@ -7,11 +7,12 @@
  * ---------------------------------------------------------- */
 @import "normalize";
 @import "bootstrap/functions";
-@import "variables";
+@import "../variables";
 @import "bootstrap/mixins";
 @import "bootstrap/root";
 @import "bootstrap/reboot";
 @import "bootstrap/utilities";
+@import "bootstrap/utilities/screenreaders";
 @import "bootstrap/type";
 @import "bootstrap/grid";
 @import "bootstrap/images";
@@ -25,8 +26,23 @@ $height: $spacer;
 body {
     @extend .bg-light, .text-dark;
     overflow-x: hidden;
+
+    h1, h1 > *, h2, h2 > *, h3, h3 > *, h4, h4 > *, h5, h5 > *, h6, h6 > *, div, div > *, span, span > *, p, p > * {
+        overflow-wrap: break-word;
+        
+        @include media-breakpoint-up('md') {
+            overflow-wrap: normal;
+        }
+    }
 }
 #content {
+    blockquote {
+        @include nlb-color($gray-200, $gray-300, $dark);
+        @include nlb-frame();
+
+        font-style: italic;
+    }
+
     // max-width: 100%;
     .hidden-headline { @extend .d-none; }
     .nested-list { list-style-type: none; padding-left: 0; }
@@ -188,18 +204,24 @@ body {
     
         @include media-breakpoint-up('lg') {
             margin-bottom: 45px;
+            text-align: left !important;
         }
     
         img {
             @extend .figure-img, .img-fluid, .rounded, .mx-auto, .d-block;
             max-width: 100%;
-    
+
             @include media-breakpoint-up('md') {
                 max-width: 70%;
             }
+
+            @include media-breakpoint-up('lg') {
+                margin-left: 0 !important;
+                margin-right: auto !important;
+            }
         }
     
-        figcaption, .caption {
+        figcaption, .caption > *  {
             @extend .figure-caption;
             color: $dark;
             min-height: 15px;
@@ -211,6 +233,8 @@ body {
         
             @include media-breakpoint-up('lg') {
                 min-height: 25px;
+                margin-left: 0 !important;
+                margin-right: auto !important;
             }
         }
     }
@@ -323,10 +347,17 @@ body {
         &.bg-yellow {
             @include nlb-color($frame-yellow-bg, darken($frame-yellow-bg, 35%), $dark);
         }
+        
+        &.bg-green {
+            @include nlb-color($frame-default-bg, $frame-default-line, $dark);
+        }
     }
     
     /* Lists
      * ---------------------------------------------------------- */
+    .list-style-type-none { 
+         @extend .list-unstyled; 
+    }
     table.liste, ul, ol {
         font-size: $nlb-p-font-size-sm;
         margin-bottom: $nlb-p-margin-bottom-sm;
@@ -334,19 +365,16 @@ body {
 
         @include media-breakpoint-only('sm') {
             font-size: $nlb-p-font-size-sm;
-            margin-bottom: $nlb-p-margin-bottom-sm;
             margin-left: 20px;
         }
     
         @include media-breakpoint-only('md') {
             font-size: $nlb-p-font-size-md;
-            margin-bottom: $nlb-p-margin-bottom-md;
             margin-left: 25px;
         }
     
         @include media-breakpoint-up('lg') {
             font-size: $nlb-p-font-size-lg;
-            margin-bottom: $nlb-p-margin-bottom-lg;
             margin-left: 25px;
         }
 
@@ -363,11 +391,35 @@ body {
             }
         }
     }
-    ul {
+    ol, ul {
         padding-inline-start: 0;
+        margin-left: 45px;
+
+        @include media-breakpoint-only('sm') {
+            margin-bottom: $nlb-p-margin-bottom-sm*0.75;
+        }
+    
+        @include media-breakpoint-only('md') {
+            margin-bottom: $nlb-p-margin-bottom-md*0.75;
+        }
+    
+        @include media-breakpoint-up('lg') {
+            margin-bottom: $nlb-p-margin-bottom-lg*0.75;
+        }
 
         li {
             margin-left: 0;
+            margin-bottom: 8px;
+            @include media-breakpoint-only('sm') {
+                margin-bottom: 10px;
+            }
+            @include media-breakpoint-up('md') {
+                margin-bottom: 12px;
+            }
+            
+            ol, ul {
+                margin-left: 30px !important;
+            }
         }
 
         &.plain {
@@ -387,6 +439,10 @@ body {
             }
         }
     }
+}
+
+.spoken-math {
+    @include sr-only();
 }
 
 /* End Core.SCSS */

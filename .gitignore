@@ -61,4 +61,5 @@ typings/
 .next
 
 # NLB Testfiles
+dist/tests/
 tests/
