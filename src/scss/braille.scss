@@ -27,7 +27,7 @@ $include-em: true !default;
     // be implicitly set to "pre-page" or "post-page" when in a
     // volume area context.
     counter-increment: page;
-    margin-right: 1;
+    margin-right: 2;
     @if $show-print-page-numbers {
         margin-left: 2;
     } @else {
@@ -102,6 +102,7 @@ pagenum, *[epub|type~='pagebreak'] {
 }
 
 @page body {
+    
     @if $show-print-page-numbers or $show-braille-page-numbers {
             margin-bottom: 1;
     }
@@ -112,6 +113,7 @@ pagenum, *[epub|type~='pagebreak'] {
             }
             @left {
                     content: -obfl-marker-indicator(pagenum, '⠿');
+                    text-transform: none;
             }
     }
 
@@ -120,7 +122,7 @@ pagenum, *[epub|type~='pagebreak'] {
                     content: counter(page);
             }
     }
-}
+ }
 /* -------------------------------------------------------------------------- */
 /*               line spacing                                                 */
 /* -------------------------------------------------------------------------- */
@@ -253,7 +255,8 @@ section {
 }
 @volume :first {
     @begin {
-            content: flow(front) flow(front-first) flow(document-toc);
+            content: flow(front) flow(front-first) flow(document-toc) flow(volume-toc);
+    
     }
 }
 
