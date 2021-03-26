@@ -112,7 +112,7 @@ pagenum, *[epub|type~='pagebreak'] {
                              string(print-page, last);
             }
             @left {
-                    content: -obfl-marker-indicator(pagenum, '⠿');
+                   /* content: -obfl-marker-indicator(pagenum, '⠿'); */
                     text-transform: none;
             }
     }
