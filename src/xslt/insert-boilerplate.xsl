@@ -324,7 +324,7 @@
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'Feil eller mangler kan meldes til punkt@nlb.no.'"/>
+                <xsl:with-param name="content" select="'Feil eller mangler kan meldes til punkt@statped.no.'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
         </xsl:variable>
