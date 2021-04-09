@@ -265,8 +265,7 @@ section {
 .pef-titlepage {
     flow: front;
     display: block;
-   /* volume-break-after: avoid;
-    volume-break-before: avoid;*/
+   /* volume-break-after: avoid;*/
     text-transform: uncontracted;
     margin-top: 0;
     margin-left: 1;
@@ -296,8 +295,7 @@ section {
 #generated-volume-toc, #generated-document-toc {
     // flow: volume-toc; // default for #generated-volume-toc
     // flow: document-toc; // default for #generated-document-toc
-    /* volume-break-after: avoid;
-    volume-break-before: avoid;*/
+    /* volume-break-after: avoid;*/
     page-break-before: always;
     margin-left: 0; // no left margin on toc lists
     
@@ -343,8 +341,7 @@ section {
     // can not be put in the normal flow because of how the .notes-placement and .notes-placement-fallback
     // fields are currently implemented
     flow: front-first;
-    /* volume-break-after: avoid;
-    volume-break-before: avoid;*/
+    /* volume-break-after: avoid;*/
 }
 
 
@@ -545,6 +542,7 @@ h6 {
     margin-top: 1;
     text-align: left;
     text-indent: 0;
+    hyphens: none;
 }
 
 /* depth 5 */
@@ -559,6 +557,7 @@ h5, level1.part h6, *[epub|type~='part'] h6 {
     margin-top: 1;
     text-align: left;
     text-indent: 0;
+    hyphens: none;
 }
 
 /* depth 4 */
@@ -573,6 +572,7 @@ h4, level1.part h5, *[epub|type~='part'] h5 {
     margin-top: 1;
     text-align: left;
     text-indent: 0;
+    hyphens: none;
 }
 
 /* depth 3 */
@@ -582,11 +582,12 @@ h3, level1.part h4, *[epub|type~='part'] h4 {
     border-right: none;
     border-top: none;
     margin-bottom: 0;
-    margin-left: 2;
-    margin-right: 2;
+    margin-left: 5;
+    margin-right: 4;
     margin-top: 1;
-    text-align: center;
+    text-align: left;
     text-indent: 0;
+    hyphens: none;
 }
 
 /* depth 2 */
@@ -596,11 +597,12 @@ h2, level1.part h3, *[epub|type~='part'] h3 {
     border-right: none;
     border-top: none;
     margin-bottom: 1;
-    margin-left: 2;
-    margin-right: 2;
+    margin-left: 5;
+    margin-right: 4;
     margin-top: 2;
-    text-align: center;
+    text-align: left;
     text-indent: 0;
+    hyphens: none;
 }
 
 /* depth 1 */
@@ -608,13 +610,15 @@ h1, level1.part h2, *[epub|type~='part'] h2 {
     border-bottom: ⠉;
     border-left: none;
     border-right: none;
-    border-top: ⠉;
+    /*border-top: ⠉;*/
+    border-top: none;
     margin-bottom: 1;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 5;
+    margin-right: 4;
     margin-top: 2;
-    text-align: center;
+    text-align: left;
     text-indent: 0;
+    hyphens: none;
 }
 
 /* part */
@@ -623,12 +627,13 @@ level1.part h1, *[epub|type~='part'] h1 {
     border-left: ⠇;
     border-right: ⠸;
     border-top: ⠉;
-    margin-bottom: 1;
-    margin-left: 1;
-    margin-right: 5;
+    margin-bottom: 2;
+    margin-left: 2;
+    margin-right: 2;
     margin-top: 2;
     text-align: center;
     text-indent: 0;
+    hyphens: none;
 }
 
 /* level1 without headline */
