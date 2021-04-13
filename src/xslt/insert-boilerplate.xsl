@@ -165,28 +165,35 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+
          <xsl:variable name="language-id" as="xs:string*">
             <xsl:choose>
              <xsl:when test="$namespace-uri = $dtbook-namespace">
-                 <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
-                    <xsl:sequence select="'NYNORSK'"/>
-                 </xsl:if>
-                  <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'no'">
-                    <xsl:sequence select="'BOKMÅL'"/>
-                 </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)= 'nn'">
+                         <xsl:sequence select="'NYNORSK'"/>
+                    </xsl:when>
+                  <xsl:otherwise test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content) = 'no'">
+                        <xsl:sequence select="'BOKMÅL'"/>
+                 </xsl:otherwise>
+                 </xsl:choose>
                  <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
-                </xsl:when>
-                <xsl:otherwise>
-                 <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
+            </xsl:when>
+            
+            <xsl:otherwise>
+                <xsl:when test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
                     <xsl:sequence select="'NYNORSK'"/>
-                 </xsl:if>
-                  <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'no'">
+                 </xsl:when>
+                  <xsl:otherwise test="//html:head/html:meta[@name='dc:language']/string(@content)= 'no'">
                     <xsl:sequence select="'BOKMÅL'"/>
-                 </xsl:if>
+                 </xsl:otherwise>
+                 </xsl:choose>
+                 <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
+                
                  <!--  <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/> -->
                    
-                </xsl:otherwise>
-            </xsl:choose>
+              </xsl:otherwise>
+           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="original-publisher" as="xs:string?">
             <xsl:choose>
