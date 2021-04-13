@@ -276,8 +276,8 @@
             </xsl:if>
             <xsl:variable name="lines-used" select="if (count($translator-lines)) then $lines-used + 1 + count($translator-lines) + 2 else $lines-used"/>
             
-            <!-- fill empty lines up to and including page height minus 4 (i.e. row 21) -->
-            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 4">
+            <!-- fill empty lines up to and including page height minus 1 (i.e. row 21) -->
+            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 1">
                 <xsl:call-template name="empty-row">
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
