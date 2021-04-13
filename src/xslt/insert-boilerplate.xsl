@@ -168,7 +168,7 @@
          <xsl:variable name="language-id" as="xs:string*">
             <xsl:choose>
              <xsl:when test="$namespace-uri = $dtbook-namespace">
-                 <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'NN'">
+                 <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
                     <xsl:sequence select="'NYNORSK'"/>
                  </xsl:if>
                  <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
