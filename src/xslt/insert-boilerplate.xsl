@@ -165,6 +165,16 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+         <xsl:variable name="language-id" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$namespace-uri = $dtbook-namespace">
+                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                   <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="original-publisher" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="$namespace-uri = $dtbook-namespace">
@@ -274,8 +284,17 @@
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             </xsl:if>
+
+            <xsl:call-template name="row">
+                <xsl:with-param name="content" select="$language-id"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                <xsl:with-param name="inline" select="true()"/>
+            </xsl:call-template>
+
             <xsl:variable name="lines-used" select="if (count($translator-lines)) then $lines-used + 1 + count($translator-lines) + 2 else $lines-used"/>
             
+
+
             <!-- fill empty lines up to and including page height minus 8 (i.e. row 20) -->
             <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 8">
                 <xsl:call-template name="empty-row">
