@@ -174,7 +174,8 @@
                  <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
                 </xsl:when>
                 <xsl:otherwise>
-                   <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/>
+                 <!--  <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/> -->
+                    <xsl:sequence select="'BOKMÅL'"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
