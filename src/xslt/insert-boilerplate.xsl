@@ -171,9 +171,18 @@
                  <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
                     <xsl:sequence select="'NYNORSK'"/>
                  </xsl:if>
+                  <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'no'">
+                    <xsl:sequence select="'BOKMÅL'"/>
+                 </xsl:if>
                  <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
                 </xsl:when>
                 <xsl:otherwise>
+                 <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
+                    <xsl:sequence select="'NYNORSK'"/>
+                 </xsl:if>
+                  <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'no'">
+                    <xsl:sequence select="'BOKMÅL'"/>
+                 </xsl:if>
                  <!--  <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/> -->
                     <xsl:sequence select="'BOKMÅL'"/>
                 </xsl:otherwise>
