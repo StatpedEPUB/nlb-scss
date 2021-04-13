@@ -169,7 +169,7 @@
             <xsl:choose>
              <xsl:when test="$namespace-uri = $dtbook-namespace">
                  <xsl:if test="//html:head/html:meta[@name='dc:language']/string(@content)= 'NN'">
-                    <xsl:with-param name="content" select="'NYNORSK'"/>
+                    <xsl:sequence select="'NYNORSK'"/>
                  </xsl:if>
                  <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
                 </xsl:when>
