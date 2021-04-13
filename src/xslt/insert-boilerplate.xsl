@@ -155,6 +155,16 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+          <xsl:variable name="pef-id" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$namespace-uri = $dtbook-namespace">
+                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'nlbprod:identifier.braille']/string(@content)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//html:head/html:meta[@name = 'nlbprod:identifier.braille']/string(@content)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="original-publisher" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="$namespace-uri = $dtbook-namespace">
@@ -266,22 +276,27 @@
             </xsl:if>
             <xsl:variable name="lines-used" select="if (count($translator-lines)) then $lines-used + 1 + count($translator-lines) + 2 else $lines-used"/>
             
-            <!-- fill empty lines up to and including page height minus 6 (i.e. row 22) -->
-            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 6">
+            <!-- fill empty lines up to and including page height minus 5 (i.e. row 21) -->
+            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 5">
                 <xsl:call-template name="empty-row">
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>
 
             <xsl:call-template name="row">
+                <xsl:with-param name="content" select="'cccccccccccccccccccccccccccccccccc'"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+            </xsl:call-template>
+
+            <xsl:call-template name="row">
                 <xsl:with-param name="content" select="concat('STATPED - ',format-dateTime($datetime, '[Y]'))"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
             
-            <xsl:call-template name="row">
+           <!--<xsl:call-template name="row">
                 <xsl:with-param name="content" select="$grade-text"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
+            </xsl:call-template> -->
             
             <!-- 2 empty rows before volume number -->
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
@@ -290,6 +305,11 @@
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="' av '"/>
                 <xsl:with-param name="classes" select="'pef-volume'"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                <xsl:with-param name="inline" select="true()"/>
+            </xsl:call-template>
+            <xsl:call-template name="row">
+                <xsl:with-param name="classes" select="'pef-id'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
