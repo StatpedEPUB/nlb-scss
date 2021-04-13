@@ -309,7 +309,7 @@
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
             <xsl:call-template name="row">
-                <xsl:with-param name="classes" select="'pef-id'"/>
+                <xsl:with-param name="classes" select="$pef-id"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
