@@ -184,7 +184,7 @@
                     <xsl:sequence select="'BOKMÅL'"/>
                  </xsl:if>
                  <!--  <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/> -->
-                    <xsl:sequence select="'BOKMÅL'"/>
+                   
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
