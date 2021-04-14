@@ -245,11 +245,12 @@
         </xsl:variable>
 
         <xsl:variable name="forlag-sted-årstall" as="xs:string*">
-        
-              <xsl:sequence select=concat($forlag, ', ', $sted , ', ', $årstall)/>          
+
+              <xsl:sequence select="concat($forlag, ', ', $sted , ', ', $årstall)"/>       
+
         </xsl:variable>
          <xsl:variable name="utgave" as="xs:string*">
-              <xsl:sequence select=concat('Utgave  ', $utgave-nummer)/>          
+              <xsl:sequence select="concat('Utgave  ', $utgave-nummer)"/>          
         </xsl:variable>
 
         <xsl:variable name="original-publisher" as="xs:string?">
@@ -441,7 +442,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="final-rows" as="element()*">
-            <xsl:call-template name="row">
+            <xsl:call-template name="row">utgave
                 <xsl:with-param name="content" select="'Antall sider: '"/>
                 <xsl:with-param name="classes" select="'pef-pages'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
