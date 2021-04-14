@@ -442,7 +442,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="final-rows" as="element()*">
-            <xsl:call-template name="row">utgave
+            <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Antall sider: '"/>
                 <xsl:with-param name="classes" select="'pef-pages'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
