@@ -166,6 +166,8 @@
             </xsl:choose>
         </xsl:variable>
 
+         
+
         <xsl:variable name="language-id" as="xs:string*">
         <xsl:choose>
             <xsl:when test="$namespace-uri = $dtbook-namespace">
@@ -195,6 +197,54 @@
                    
             </xsl:otherwise>
         </xsl:choose>
+        </xsl:variable>
+
+        <xsl:variable name="utgave" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$namespace-uri = $dtbook-namespace">
+                     <xsl:sequence select=concat(Utgave , "//dtbook:head/dtbook:meta[@name = 'schema:bookEdition.original']/string(@content)")/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select=concat(Utgave , "//html:head/html:meta[@name = 'schema:bookEdition.original']/string(@content)")/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+          <xsl:variable name="forlag" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$namespace-uri = $dtbook-namespace">
+                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:publisher.original']/string(@content)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//html:head/html:meta[@name = 'dc:publisher.original']/string(@content)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+   <xsl:variable name="sted" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$namespace-uri = $dtbook-namespace">
+                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:publisher.location.original']/string(@content)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//html:head/html:meta[@name = 'dc:publisher.location.original']/string(@content)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+         <xsl:variable name="årstall" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$namespace-uri = $dtbook-namespace">
+                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:date.issued.original']/string(@content)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//html:head/html:meta[@name = 'dc:date.issued.original']/string(@content)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:variable name="forlag-sted-årstall" as="xs:string*">
+              <xsl:sequence select=concat($forlag, ', ', $sted , ', ', $årstall")/>          
         </xsl:variable>
 
         <xsl:variable name="original-publisher" as="xs:string?">
@@ -309,6 +359,18 @@
 
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$language-id"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                <xsl:with-param name="inline" select="true()"/>
+            </xsl:call-template>
+
+              <xsl:call-template name="row">
+                <xsl:with-param name="content" select="$utgave"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                <xsl:with-param name="inline" select="true()"/>
+            </xsl:call-template>
+
+              <xsl:call-template name="row">
+                <xsl:with-param name="content" select="$forlag-sted-årstall"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
