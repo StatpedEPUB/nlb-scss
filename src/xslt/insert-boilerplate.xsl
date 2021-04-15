@@ -326,7 +326,7 @@
  
               
                 <xsl:call-template name="row">
-                     <xsl:with-param name="content" select="concat($author-lines,' mfl. ')"/>
+                     <xsl:with-param name="content" select="concat($author-lines[1],' mfl. ')"/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
            
