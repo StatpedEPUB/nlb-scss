@@ -276,8 +276,8 @@
         
         <xsl:variable name="author-lines" select="nlb:author-lines($author, $line-width, 'mfl.')" as="xs:string*"/>
         <xsl:variable name="authors-fit" select="$author-lines[1] = 'true'" as="xs:boolean"/>
-       <!-- <xsl:variable name="author-lines" select="$author-lines[position() gt 1]" as="xs:string*"/>-->
-        <!-- <xsl:variable name="author-lines" select="if (count($author) gt 1 and not(count($author-lines))) then 'Flere forfattere' else $author-lines"/>-->
+        <xsl:variable name="author-lines" select="$author-lines[position() gt 1]" as="xs:string*"/>
+        <xsl:variable name="author-lines" select="if (count($author) gt 1 and not(count($author-lines))) then 'Flere forfattere' else $author-lines"/>
         
         <xsl:variable name="title-lines" select="nlb:title-lines($fulltitle, 5, $line-width)" as="xs:string*"/>
         <xsl:variable name="title-fits" select="$title-lines[1] = 'true'" as="xs:boolean"/>
@@ -317,12 +317,19 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
             
-            <xsl:for-each select="$author-lines">
+          <!--  <xsl:for-each select="$author-lines">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
-            </xsl:for-each>
+            </xsl:for-each>-->
+ 
+              
+                <xsl:call-template name="row">
+                     <xsl:with-param name="content" select="concat($author-lines,' mfl. ')"/>
+                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                </xsl:call-template>
+           
             
             <!-- 2 empty rows before title -->
             <xsl:if test="count($author-lines)">
