@@ -324,7 +324,7 @@
                 </xsl:call-template>
             </xsl:for-each>-->
           
-          <!--  <xsl:variable name="author-single" select="substring-before($author,';')"/>-->
+          <!--  <xsl:variable name="author-single" select="substring-before($author,';')"/>
             <xsl:variable name="author-single" select="haha"/>
                 <xsl:if test="count($author) = 1">
                     <xsl:call-template name="row">
@@ -341,7 +341,7 @@
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
-               </xsl:if>
+               </xsl:if>-->
                   
                  <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$utgave"/>
