@@ -326,7 +326,7 @@
  
                     <xsl:if test="count($author) = 1">
                     <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="concat($author,'')"/>
+                    <xsl:with-param name="content" select="concat($author[1],'')"/>
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
