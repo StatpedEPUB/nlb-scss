@@ -323,7 +323,7 @@
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>-->
- substring-before($author,';')
+ 
                     <xsl:if test="count($author) = 1">
                     <xsl:call-template name="row">
                     <xsl:with-param name="content" select="substring-before($author,';')"/>
