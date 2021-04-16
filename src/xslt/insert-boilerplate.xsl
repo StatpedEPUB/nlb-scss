@@ -324,30 +324,26 @@
                 </xsl:call-template>
             </xsl:for-each>-->
           
-          <xsl:variable name="author-single" select="substring-before($author,';')"/>
-          
-                <xsl:if test="count($author) = 1">
+          <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
+           <!--  if there is a semicolon delimeter there are more than one authors -->
+                <xsl:if test="not($author-multiple)">  <!-- no delimiter found ; -->
                     <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$author-single" />
+                    <xsl:with-param name="content" select="$author-multiple" />
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
                </xsl:if>
 
-               <xsl:if test="count($author) gt 1">
+               <xsl:if test="$author-multiple">   
                     <xsl:call-template name="row">
                    
-                    <xsl:with-param name="content" select="concat($author-single,' mfl.')"/>
+                    <xsl:with-param name="content" select="concat($author-multiple,' mfl.')"/>
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
                </xsl:if>
                   
-                 <xsl:call-template name="row">
-                <xsl:with-param name="content" select="$utgave"/>
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                <xsl:with-param name="inline" select="true()"/>
-                </xsl:call-template>
+               
            
             
             <!-- 2 empty rows before title -->
