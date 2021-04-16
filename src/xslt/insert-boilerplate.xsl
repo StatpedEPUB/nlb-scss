@@ -323,10 +323,10 @@
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>-->
- 
+            <xsl:variable name="author-single" select="substring-before($author,';')"/>
                     <xsl:if test="count($author) = 1">
                     <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="substring-before($author,';')"/>
+                    <xsl:with-param name="content" select"$author-single" />
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
@@ -334,7 +334,8 @@
 
                <xsl:if test="count($author) gt 1">
                     <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="substring-before($author,';')"/>
+                    select="concat('Forfatter: ',normalize-space($author))"
+                    <xsl:with-param name="content" select="concat($author-single,' mfl.')"/>
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
