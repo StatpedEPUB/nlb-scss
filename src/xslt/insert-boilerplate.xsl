@@ -6,7 +6,7 @@
                 xmlns:epub="http://www.idpf.org/2007/ops"
                 xmlns:nlb="http://www.nlb.no/ns/pipeline/xslt"
                 exclude-result-prefixes="#all"
-                version="2.0">
+                version="2.0"/>
     
     <xsl:output indent="yes"/>
     
@@ -324,8 +324,8 @@
                 </xsl:call-template>
             </xsl:for-each>-->
           
-          <!--  <xsl:variable name="author-single" select="substring-before($author,';')"/>
-            <xsl:variable name="author-single" select="haha"/>
+          <xsl:variable name="author-single" select="substring-before($author,';')"/>
+          
                 <xsl:if test="count($author) = 1">
                     <xsl:call-template name="row">
                     <xsl:with-param name="content" select"$author-single" />
@@ -341,7 +341,7 @@
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
-               </xsl:if>-->
+               </xsl:if>
                   
                  <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$utgave"/>
