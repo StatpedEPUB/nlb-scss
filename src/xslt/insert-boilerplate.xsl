@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"
-                xmlns:html="http://www.w3.org/1999/xhtml"
-                xmlns:epub="http://www.idpf.org/2007/ops"
-                xmlns:nlb="http://www.nlb.no/ns/pipeline/xslt"
-                exclude-result-prefixes="#all"
-                version="2.0"/>
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:epub="http://www.idpf.org/2007/ops"
+    xmlns:nlb="http://www.nlb.no/ns/pipeline/xslt"
+    exclude-result-prefixes="#all"
+    version="2.0">
     
     <xsl:output indent="yes"/>
     
@@ -328,7 +328,7 @@
           
                 <xsl:if test="count($author) = 1">
                     <xsl:call-template name="row">
-                    <xsl:with-param name="content" select"$author-single" />
+                    <xsl:with-param name="content" select="$author-single" />
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
