@@ -326,7 +326,14 @@
  
               
                 <xsl:call-template name="row">
-                     <xsl:with-param name="content" select="concat($author-lines[1],' mfl. ')"/>
+                <xsl:choose> 
+                    <xsl:when test="count($authors) = > 1">
+                        <xsl:with-param name="content" select="concat($authors[1],' mfl. ')"/>
+                    </xsl:when> 
+                    <xsl:otherwise>
+                        <xsl:with-param name="content" select="concat($authors,'')"/>
+                    </xsl:otherwise>
+                </xsl:choose>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
            
