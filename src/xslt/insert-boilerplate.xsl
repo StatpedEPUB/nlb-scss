@@ -273,6 +273,17 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+
+        <xsl:variable name="isbn" as="xs:string?">
+           <xsl:choose>
+                <xsl:when test="$namespace-uri = $dtbook-namespace">
+                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'schema:isbn.original']/string(@content)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="//html:head/html:meta[@name = 'schema:isbn.original']/string(@content)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         
         <xsl:variable name="author-lines" select="nlb:author-lines($author, $line-width, 'mfl.')" as="xs:string*"/>
         <xsl:variable name="authors-fit" select="$author-lines[1] = 'true'" as="xs:boolean"/>
@@ -482,9 +493,33 @@
         <xsl:element name="{nlb:level-element-name($namespace-uri, /*)}" namespace="{$namespace-uri}">
             <xsl:attribute name="class" select="'pef-about'"/>
             <xsl:element name="h1" namespace="{$namespace-uri}">
-                <xsl:text>Om boka</xsl:text>
+               
+            <xsl:call-template name="row">
+                <xsl:with-param name="content" select="concat('ISBN:',$isbn)"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                <xsl:with-param name="inline" select="true()"/>
+            </xsl:call-template>
             </xsl:element>
-            <xsl:if test="not($authors-fit)">
+
+   <xsl:variable name="author-multiple2" select="substring-before($author,';')"/>
+           <!--  if there is a semicolon delimeter there are more than one authors -->
+                <xsl:if test="not($author-multiple2)">  <!-- no delimiter found ; -->
+                    <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="$author-multiple2" />
+                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                        <xsl:with-param name="inline" select="true()"/>
+                      </xsl:call-template>
+               </xsl:if>
+
+               <xsl:if test="$author-multiple2">   
+                    <xsl:call-template name="row">
+                   
+                    <xsl:with-param name="content" select="concat($author-multiple2,' mfl.')"/>
+                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                        <xsl:with-param name="inline" select="true()"/>
+                      </xsl:call-template>
+               </xsl:if>
+         <!--   <xsl:if test="not($authors-fit)">
                 <xsl:choose>
                     <xsl:when test="count($author) = 1">
                         <xsl:call-template name="row">
@@ -532,7 +567,7 @@
                 </xsl:if>
                 <xsl:sequence select="$final-rows"/>
             </xsl:if>
-        </xsl:element>
+        </xsl:element>-->
         <!--
             in order for -obfl-use-when-collection-not-empty to work the "notes-placement" and
             "notes-placement-fallback" elements must be added to a named flow directly (not via
