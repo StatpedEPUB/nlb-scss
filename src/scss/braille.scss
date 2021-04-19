@@ -623,7 +623,8 @@ h1, level1.part h2, *[epub|type~='part'] h2 {
 
 /* part */
 level1.part h1, *[epub|type~='part'] h1 {
-    border-bottom: ⠤;
+   /* border-bottom: ⠤;*/
+    border-bottom: none;
     border-left: ⠇;
     border-right: ⠸;
     /*border-top: ⠉;*/
