@@ -626,7 +626,8 @@ level1.part h1, *[epub|type~='part'] h1 {
     border-bottom: ⠤;
     border-left: ⠇;
     border-right: ⠸;
-    border-top: ⠉;
+    /*border-top: ⠉;*/
+    border-top: none;
     margin-bottom: 2;
     margin-left: 2;
     margin-right: 2;
