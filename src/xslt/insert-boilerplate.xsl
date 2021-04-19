@@ -499,9 +499,8 @@
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
-            </xsl:element>
-
-   <xsl:variable name="author-multiple2" select="substring-before($author,';')"/>
+           
+            <xsl:variable name="author-multiple2" select="substring-before($author,';')"/>
            <!--  if there is a semicolon delimeter there are more than one authors -->
                 <xsl:if test="not($author-multiple2)">  <!-- no delimiter found ; -->
                     <xsl:call-template name="row">
@@ -519,6 +518,9 @@
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
                </xsl:if>
+            </xsl:element>
+
+  
          <!--   <xsl:if test="not($authors-fit)">
                 <xsl:choose>
                     <xsl:when test="count($author) = 1">
