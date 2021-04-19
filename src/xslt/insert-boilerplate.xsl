@@ -521,7 +521,7 @@
             </xsl:element>
 
   
-         <!--   <xsl:if test="not($authors-fit)">
+          <xsl:if test="not($authors-fit)">
                 <xsl:choose>
                     <xsl:when test="count($author) = 1">
                         <xsl:call-template name="row">
@@ -569,7 +569,7 @@
                 </xsl:if>
                 <xsl:sequence select="$final-rows"/>
             </xsl:if>
-        </xsl:element>-->
+        </xsl:element>
         <!--
             in order for -obfl-use-when-collection-not-empty to work the "notes-placement" and
             "notes-placement-fallback" elements must be added to a named flow directly (not via
