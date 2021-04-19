@@ -475,7 +475,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="final-rows" as="element()*">
-            <xsl:call-template name="row">
+     <!--     <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Antall sider: '"/>
                 <xsl:with-param name="classes" select="'pef-pages'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
@@ -488,10 +488,11 @@
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Feil eller mangler kan meldes til punkt@statped.no.'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
+            </xsl:call-template>-->  
         </xsl:variable>
         <xsl:element name="{nlb:level-element-name($namespace-uri, /*)}" namespace="{$namespace-uri}">
-            <xsl:attribute name="class" select="'pef-about'"/>
+           <!-- <xsl:attribute name="class" select="'pef-about'"/>-->
+          
             <xsl:element name="h1" namespace="{$namespace-uri}">
                
             <xsl:call-template name="row">
