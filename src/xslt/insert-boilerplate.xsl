@@ -337,9 +337,9 @@
           
           <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
            <!--  if there is a semicolon delimeter there are more than one authors -->
-                <xsl:if test="$author-multiple"=false>  <!-- no delimiter found ; -->
-                    <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$author-multiple" />
+                <xsl:if test!="$author-multiple">  <!-- no delimiter found ; -->
+                           <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="$author" />
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
