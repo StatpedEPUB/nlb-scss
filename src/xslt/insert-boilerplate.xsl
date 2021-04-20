@@ -506,7 +506,7 @@
            <!--  if there is a semicolon delimeter there are more than one authors -->
                 <xsl:if test="not($author-multiple2)">  <!-- no delimiter found ; -->
                     <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$author" />
+                    <xsl:with-param name="content" select="$author-multiple2" />
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
