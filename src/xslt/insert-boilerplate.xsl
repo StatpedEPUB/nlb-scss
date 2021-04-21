@@ -503,12 +503,7 @@
              </xsl:element>
 
               
-                    <xsl:call-template name="row">
-                   
-                      <xsl:with-param name="content" select="concat('ISBN:',$isbn)"/>
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
+                
             
             <xsl:variable name="author-multiple2" select="substring-before($author,';')"/>
            <!--  if there is a semicolon delimeter there are more than one authors -->
