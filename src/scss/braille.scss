@@ -340,7 +340,7 @@ section {
     
     // can not be put in the normal flow because of how the .notes-placement and .notes-placement-fallback
     // fields are currently implemented
-    text-align: left;
+
     flow: front-first;
     /* volume-break-after: avoid;*/
 }
