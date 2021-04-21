@@ -490,17 +490,12 @@
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template> -->
         </xsl:variable>
-         <xsl:variable name="dummy" select="'Info'"/>
+       
         <xsl:element name="{nlb:level-element-name($namespace-uri, /*)}" namespace="{$namespace-uri}">
             <xsl:attribute name="class" select="'pef-about'"/>
             <xsl:element name="h1" namespace="{$namespace-uri}">
                
-            <xsl:call-template name="row">
-             <xsl:with-param name="content" select="concat('ISBN:',$isbn)"/>
-             
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                <xsl:with-param name="inline" select="true()"/>
-            </xsl:call-template>
+           
            
          
             </xsl:element>
