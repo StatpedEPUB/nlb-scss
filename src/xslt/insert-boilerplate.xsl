@@ -490,7 +490,7 @@
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template> -->
         </xsl:variable>
-        <xsl:element name="{nlb:level-element-name($namespace-uri, /*)}" namespace="{$namespace-uri}">
+     <!--   <xsl:element name="{nlb:level-element-name($namespace-uri, /*)}" namespace="{$namespace-uri}">
             <xsl:attribute name="class" select="'pef-about'"/>
             <xsl:element name="h2" namespace="{$namespace-uri}">
                
@@ -498,10 +498,18 @@
                 <xsl:with-param name="content" select="concat('ISBN:',$isbn)"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
-           </xsl:call-template>
-           
-         
-             </xsl:element>
+           </xsl:call-template>      
+       
+             </xsl:element>-->
+
+              
+                    <xsl:call-template name="row">
+                   
+                      <xsl:with-param name="content" select="concat('ISBN:',$isbn)"/>
+                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                        <xsl:with-param name="inline" select="true()"/>
+                      </xsl:call-template>
+            
             <xsl:variable name="author-multiple2" select="substring-before($author,';')"/>
            <!--  if there is a semicolon delimeter there are more than one authors -->
                 <xsl:if test="not($author-multiple2)">  <!-- no delimiter found ; -->
