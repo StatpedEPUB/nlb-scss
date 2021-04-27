@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"
-    xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:epub="http://www.idpf.org/2007/ops"
-    xmlns:nlb="http://www.nlb.no/ns/pipeline/xslt"
-    exclude-result-prefixes="#all"
-    version="2.0">
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"
+                xmlns:html="http://www.w3.org/1999/xhtml"
+                xmlns:epub="http://www.idpf.org/2007/ops"
+                xmlns:nlb="http://www.nlb.no/ns/pipeline/xslt"
+                exclude-result-prefixes="#all"
+                version="2.0">
     
     <xsl:output indent="yes"/>
     
@@ -155,104 +155,6 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-          <xsl:variable name="pef-id" as="xs:string*">
-            <xsl:choose>
-                <xsl:when test="$namespace-uri = $dtbook-namespace">
-                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'nlbprod:identifier.braille']/string(@content)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:sequence select="//html:head/html:meta[@name = 'nlbprod:identifier.braille']/string(@content)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-         
-
-        <xsl:variable name="language-id" as="xs:string*">
-        <xsl:choose>
-            <xsl:when test="$namespace-uri = $dtbook-namespace">
-                <xsl:choose>
-                    <xsl:when test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)= 'nn'">
-                         <xsl:sequence select="'NYNORSK'"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:sequence select="'BOKMÅL'"/>
-                     </xsl:otherwise>
-               </xsl:choose>
-                 <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
-            </xsl:when>
-            
-            <xsl:otherwise>
-                <xsl:choose>
-                     <xsl:when test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
-                        <xsl:sequence select="'NYNORSK'"/>
-                     </xsl:when>
-                     <xsl:otherwise>
-                        <xsl:sequence select="'BOKMÅL'"/>
-                    </xsl:otherwise>
-                 </xsl:choose>
-                 <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
-                
-                 <!--  <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/> -->
-                   
-            </xsl:otherwise>
-        </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="utgave-nummer" as="xs:string*">
-
-            <xsl:choose>
-                <xsl:when test="$namespace-uri = $dtbook-namespace">
-                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'schema:bookEdition.original']/string(@content)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:sequence select="//html:head/html:meta[@name = 'schema:bookEdition.original']/string(@content)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-          <xsl:variable name="forlag" as="xs:string*">
-            <xsl:choose>
-                <xsl:when test="$namespace-uri = $dtbook-namespace">
-                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:publisher.original']/string(@content)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:sequence select="//html:head/html:meta[@name = 'dc:publisher.original']/string(@content)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-   <xsl:variable name="sted" as="xs:string*">
-            <xsl:choose>
-                <xsl:when test="$namespace-uri = $dtbook-namespace">
-                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:publisher.location.original']/string(@content)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:sequence select="//html:head/html:meta[@name = 'dc:publisher.location.original']/string(@content)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-         <xsl:variable name="årstall" as="xs:string*">
-            <xsl:choose>
-                <xsl:when test="$namespace-uri = $dtbook-namespace">
-                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:date.issued.original']/string(@content)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:sequence select="//html:head/html:meta[@name = 'dc:date.issued.original']/string(@content)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="forlag-sted-årstall" as="xs:string*">
-
-              <xsl:sequence select="concat($forlag, ', ', $sted , ', ', $årstall)"/>       
-
-        </xsl:variable>
-         <xsl:variable name="utgave" as="xs:string*">
-              <xsl:sequence select="concat('Utgave  ', $utgave-nummer)"/>          
-        </xsl:variable>
-
         <xsl:variable name="original-publisher" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="$namespace-uri = $dtbook-namespace">
@@ -270,17 +172,6 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:sequence select="//html:body[(tokenize(@class,'\s+'),tokenize(@epub:type,'\s+'))='colophon']/dtbook:p[not(*) and matches(text(),'^(ISBN\s*)?[\d-]+$')]/replace(text(),'^(ISBN\s*)?([\d-]+)$','$1')"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="isbn" as="xs:string?">
-           <xsl:choose>
-                <xsl:when test="$namespace-uri = $dtbook-namespace">
-                     <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'schema:isbn.original']/string(@content)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:sequence select="//html:head/html:meta[@name = 'schema:isbn.original']/string(@content)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -328,34 +219,12 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
             
-          <!--  <xsl:for-each select="$author-lines">
+            <xsl:for-each select="$author-lines">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
-            </xsl:for-each>-->
-          
-          <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
-           <!--  if there is a semicolon delimeter there are more than one authors -->
-                <xsl:if test="not($author-multiple)">  <!-- no delimiter found ; -->
-                    <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$author" />
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-               </xsl:if>
-
-               <xsl:if test="$author-multiple">   
-                    <xsl:call-template name="row">
-                   
-                    <xsl:with-param name="content" select="concat($author-multiple,' mfl.')"/>
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-               </xsl:if>
-                  
-               
-           
+            </xsl:for-each>
             
             <!-- 2 empty rows before title -->
             <xsl:if test="count($author-lines)">
@@ -395,50 +264,24 @@
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             </xsl:if>
-
-            <xsl:call-template name="row">
-                <xsl:with-param name="content" select="$language-id"/>
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                <xsl:with-param name="inline" select="true()"/>
-            </xsl:call-template>
-
-              <xsl:call-template name="row">
-                <xsl:with-param name="content" select="$utgave"/>
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                <xsl:with-param name="inline" select="true()"/>
-            </xsl:call-template>
-
-              <xsl:call-template name="row">
-                <xsl:with-param name="content" select="$forlag-sted-årstall"/>
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                <xsl:with-param name="inline" select="true()"/>
-            </xsl:call-template>
-
             <xsl:variable name="lines-used" select="if (count($translator-lines)) then $lines-used + 1 + count($translator-lines) + 2 else $lines-used"/>
             
-
-
-            <!-- fill empty lines up to and including page height minus 10 (i.e. row 18) -->
-            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 10">
+            <!-- fill empty lines up to and including page height minus 6 (i.e. row 22) -->
+            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 6">
                 <xsl:call-template name="empty-row">
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>
 
             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'cccccccccccccccccccccc'"/>
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
-
-            <xsl:call-template name="row">
-                <xsl:with-param name="content" select="concat('STATPED - ',format-dateTime($datetime, '[Y]'))"/>
+                <xsl:with-param name="content" select="concat('NLB - ',format-dateTime($datetime, '[Y]'))"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
             
-           <!--<xsl:call-template name="row">
+            <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$grade-text"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template> -->
+            </xsl:call-template>
             
             <!-- 2 empty rows before volume number -->
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
@@ -447,11 +290,6 @@
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="' av '"/>
                 <xsl:with-param name="classes" select="'pef-volume'"/>
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                <xsl:with-param name="inline" select="true()"/>
-            </xsl:call-template>
-            <xsl:call-template name="row">
-                <xsl:with-param name="content" select="$pef-id"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
@@ -475,7 +313,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="final-rows" as="element()*">
-         <!--   <xsl:call-template name="row">
+            <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Antall sider: '"/>
                 <xsl:with-param name="classes" select="'pef-pages'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
@@ -486,47 +324,16 @@
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'Feil eller mangler kan meldes til punkt@statped.no.'"/>
+                <xsl:with-param name="content" select="'Feil eller mangler kan meldes til punkt@nlb.no.'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template> -->
+            </xsl:call-template>
         </xsl:variable>
-       
         <xsl:element name="{nlb:level-element-name($namespace-uri, /*)}" namespace="{$namespace-uri}">
             <xsl:attribute name="class" select="'pef-about'"/>
             <xsl:element name="h1" namespace="{$namespace-uri}">
-               
-           
-           
-         
+                <xsl:text>Om boka</xsl:text>
             </xsl:element>
-
-                <xsl:call-template name="row">
-                   
-                      <xsl:with-param name="content" select="concat('ISBN:',$isbn)"/>
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-
-            <xsl:variable name="author-multiple2" select="substring-before($author,';')"/>
-           <!--  if there is a semicolon delimeter there are more than one authors -->
-                <xsl:if test="not($author-multiple2)">  <!-- no delimiter found ; -->
-                    <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$author-multiple2" />
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-               </xsl:if>
-
-               <xsl:if test="$author-multiple2">   
-                    <xsl:call-template name="row">
-                   
-                    <xsl:with-param name="content" select="$author"/> <!-- On page 2 list all authors -->
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-               </xsl:if>
-  
-          <xsl:if test="not($authors-fit)">
+            <xsl:if test="not($authors-fit)">
                 <xsl:choose>
                     <xsl:when test="count($author) = 1">
                         <xsl:call-template name="row">
