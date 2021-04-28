@@ -178,8 +178,8 @@
         
         <xsl:variable name="author-lines" select="nlb:author-lines($author, $line-width, 'mfl.')" as="xs:string*"/>
         <xsl:variable name="authors-fit" select="$author-lines[1] = 'true'" as="xs:boolean"/>
-        <xsl:variable name="author-lines" select="$author-lines[position() gt 1]" as="xs:string*"/>
-        <xsl:variable name="author-lines" select="if (count($author) gt 1 and not(count($author-lines))) then 'Flere forfattere' else $author-lines"/>
+     <!-- <xsl:variable name="author-lines" select="$author-lines[position() gt 1]" as="xs:string*"/>
+        <xsl:variable name="author-lines" select="if (count($author) gt 1 and not(count($author-lines))) then 'Flere forfattere' else $author-lines"/>-->
         
         <xsl:variable name="title-lines" select="nlb:title-lines($fulltitle, 5, $line-width)" as="xs:string*"/>
         <xsl:variable name="title-fits" select="$title-lines[1] = 'true'" as="xs:boolean"/>
@@ -188,7 +188,7 @@
         
         <xsl:variable name="translator-lines" select="nlb:translator-lines($translator, $line-width, 'mfl.')" as="xs:string*"/>
         <xsl:variable name="translators-fit" select="$translator-lines[1] = 'true'" as="xs:boolean"/>
-        <xsl:variable name="translator-lines" select="$translator-lines[position() gt 1]" as="xs:string*"/>
+        <xsl:variable name="translator-lines" select="$translator-lines[position() gt 1]" as="xs:string*"/>  
         
         <xsl:variable name="grade-text" as="xs:string">
             <xsl:choose>
