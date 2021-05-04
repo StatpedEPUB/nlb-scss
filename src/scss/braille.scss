@@ -279,12 +279,12 @@ section {
         text-indent:2;
         text-align: left;
     }
-    .Innrykk-5{
-        text-indent:8;
-    }
+   p.Innrykk-5;
 
 }
-
+.Innrykk-5{
+    text-indent:8;
+}
 .pef-volume {
     &::before {
             content: "Hefte " -obfl-evaluate("(round $volume)");
