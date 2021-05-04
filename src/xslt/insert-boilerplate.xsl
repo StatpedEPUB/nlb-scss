@@ -579,7 +579,8 @@
             <xsl:otherwise>
                 <xsl:element name="p" namespace="{$namespace-uri}">
                     <xsl:if test="exists($classes)">
-                        <xsl:attribute name="class" select="string-join($classes,' ')"/>
+                      <!--  <xsl:attribute name="class" select="string-join($classes,' ')"/> -->
+                      <xsl:attribute name="class" select="$classes)"/>
                     </xsl:if>
                     <xsl:value-of select="$content"/>
                 </xsl:element>
