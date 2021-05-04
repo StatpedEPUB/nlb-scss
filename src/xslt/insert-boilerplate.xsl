@@ -12,8 +12,8 @@
     
     <xsl:param name="braille-standard" select="'(dots:6)(grade:0)'"/>
     <xsl:param name="notes-placement" select="''"/>
-    <xsl:param name="page-width" select="'32'"/>
-    <xsl:param name="page-height" select="'28'"/>
+    <xsl:param name="page-width" select="'38'"/>
+    <xsl:param name="page-height" select="'29'"/>
     <xsl:param name="datetime" select="current-dateTime()"/>
     
     <xsl:variable name="contraction-grade" select="replace($braille-standard, '.*\(grade:(.*)\).*', '$1')"/>
@@ -332,6 +332,7 @@
             <xsl:for-each select="$author-lines">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
+                     <xsl:with-param name="classes" select="Innrykk-5"/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>
