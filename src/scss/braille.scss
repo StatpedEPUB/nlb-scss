@@ -272,7 +272,7 @@ section {
     margin-right: 1;
     hyphens: none;
     
-    & > p {
+    & > p{
         margin-top: 0;
         margin-bottom: 0;
         /*text-indent: 0;*/
@@ -280,8 +280,8 @@ section {
         text-align: left;
     }
 }
-.Innrykk-5{
-    text-indent:5;
+p.Innrykk-5{
+    text-indent:8;
 }
 
 .pef-volume {
