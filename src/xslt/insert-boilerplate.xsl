@@ -743,22 +743,18 @@
         <xsl:param name="last-line-if-cropped" as="xs:string"/>
         <!-- returns: ( [true|false], line1?, line2?, line3? ) -->
         
-            <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="$authors"/>
-            </xsl:call-template>
+            
+       
+        <xsl:if test="string-length($authors) &gt; 0">
+            <xsl:variable name="v" select="substring-before($authors, ';')"/>
+            <s><xsl:value-of select="$v"/></s>
+            <xsl:variable name="$v" select="substring-after($authors, ';')"/>
+            <s><xsl:value-of select="$v"/></s>
+        </xsl:if> 
+    
         <xsl:choose>
 
-         <xsl:template name="SimpleStringLoop">
-        <xsl:param name="input"/>
-        <xsl:if test="string-length($input) &gt; 0">
-            <xsl:variable name="v" select="substring-before($input, ';')"/>
-            <s><xsl:value-of select="$v"/></s>
-            <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ';')"/>
-            </xsl:call-template>
-        </xsl:if> 
-    </xsl:template>
-            <xsl:when test="count($v) = 0">
+                  <xsl:when test="count($v) = 0">
                 <xsl:sequence select="('true')"/>
             </xsl:when>
             <xsl:when test="count($v) = 1">
