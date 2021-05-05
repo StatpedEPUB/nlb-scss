@@ -348,7 +348,7 @@
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>  
                      <xsl:with-param name="classes" select="'Innrykk-5'"/>
-                     <xsl:with-param name="inline" select="true()"/>
+                    <!-- <xsl:with-param name="inline" select="true()"/>-->
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>
