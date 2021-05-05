@@ -332,7 +332,7 @@
             <xsl:for-each select="$author-lines">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
-                     <xsl:with-param name="classes" select="'Innrykk-5'"/>
+                  
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -346,7 +346,9 @@
             
             <xsl:for-each select="$title-lines">
                 <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="."/>
+                    <xsl:with-param name="content" select="."/>  
+                     <xsl:with-param name="classes" select="'Innrykk-5'"/>
+
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -378,12 +380,14 @@
 
                <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$language-id"/>
+                   <xsl:with-param name="classes" select="'Innrykk-5'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
 
               <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$utgave"/>
+                   <xsl:with-param name="classes" select="'Innrykk-5'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
@@ -410,7 +414,7 @@
                 </xsl:call-template>
             </xsl:for-each>
             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'cccccccccccccccccccccccccccccccc'"/> <!--38 - 2= 36-->
+                <xsl:with-param name="content" select="'cccccccccccccccccccccccccccccc'"/> <!--38 - 5= 33-->
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
 
@@ -419,10 +423,10 @@
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
             
-            <xsl:call-template name="row">
+          <!--  <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$grade-text"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
+            </xsl:call-template>-->
             
             <!-- 2 empty rows before volume number -->
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
@@ -437,6 +441,7 @@
 
               <xsl:call-template name="row">
                 <xsl:with-param name="content" select="$pef-id"/>
+                 <xsl:with-param name="classes" select="'Høyre-justert'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
