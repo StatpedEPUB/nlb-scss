@@ -329,19 +329,9 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
       
-      
-               <xsl:variable name="v">
-      <xsl:call-template name="SimpleStringLoop">
-              <xsl:with-param name="input" select="$authors"/>
-        
-       </xsl:call-template>
-       </xsl:variable>
-
-
-            <xsl:for-each select="$v">
+            <xsl:for-each select="$author-lines">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
-                  
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:for-each>
