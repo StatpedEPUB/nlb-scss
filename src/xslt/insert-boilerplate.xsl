@@ -337,7 +337,7 @@
             </xsl:for-each>
 
              <xsl:call-template name="row">
-                <xsl:with-param name="content" select="count($author-lines)"/>
+                <xsl:with-param name="content" select="'count($author-lines)'"/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
 
