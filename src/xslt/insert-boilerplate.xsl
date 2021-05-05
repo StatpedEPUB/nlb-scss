@@ -574,8 +574,8 @@
        <xsl:template name="SimpleStringLoop">
         <xsl:param name="input"/>
         <xsl:if test="string-length($input) &gt; 0">
-            <xsl:variable name="v2" select="substring-before($input, ';')"/>
-            <xsl:sequence select="$v2"/>
+            <xsl:sequence name="v2" select="substring-before($input, ';')"/>
+          <!--  <xsl:sequence select="$v2"/>-->
             <xsl:call-template name="SimpleStringLoop">
                 <xsl:with-param name="input" select="substring-after($input, ';')"/>
             </xsl:call-template>
