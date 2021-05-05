@@ -758,7 +758,7 @@
                 <xsl:with-param name="input" select="$authors"/>
             </xsl:call-template>-->
               
-        <xsl:sequence name="v">
+        <xsl:variable name="v">
        <xsl:call-template name="SimpleStringLoop">
               <xsl:with-param name="input" select="$authors"/>
         
