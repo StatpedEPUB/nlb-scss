@@ -344,16 +344,16 @@
             </xsl:if>
             <xsl:variable name="lines-used" select="if (count($author-lines)) then $lines-used + count($author-lines) + 2 else $lines-used"/>
             
-         <!--   <xsl:for-each select="$title-lines">
+           <xsl:for-each select="$title-lines">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>  
                      <xsl:with-param name="classes" select="'Innrykk-5'"/>
                   
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
-            </xsl:for-each>-->
+            </xsl:for-each>
             
-                <xsl:call-template name="row">
+         <!--       <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$title"/>  
                      <xsl:with-param name="classes" select="'Innrykk-5'"/>
                    
@@ -364,7 +364,7 @@
                      <xsl:with-param name="classes" select="'Innrykk-5'"/>
                    
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                </xsl:call-template>
+                </xsl:call-template>-->
             
             <!-- 2 empty rows before translator -->
             <xsl:if test="count($title-lines)">
