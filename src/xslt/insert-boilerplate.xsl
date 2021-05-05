@@ -336,10 +336,7 @@
                 </xsl:call-template>
             </xsl:for-each>
 
-             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'count($author-lines)'"/>
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
+          
 
             <!-- 2 empty rows before title -->
             <xsl:if test="count($author-lines)">
@@ -763,10 +760,7 @@
               
         <xsl:variable name="v">
       <xsl:call-template name="SimpleStringLoop">
-              <xsl:with-param name="input" select="$authors"/>
         
-       </xsl:call-template>
-       </xsl:variable>
 
         <xsl:choose>
 
@@ -821,6 +815,10 @@
                 <xsl:sequence select="$last-line-if-cropped"/>
             </xsl:when>
         </xsl:choose>
+              <xsl:with-param name="input" select="$authors"/>
+        
+       </xsl:call-template>
+       </xsl:variable>
     </xsl:function>
     
     <xsl:function name="nlb:translator-lines" as="xs:string*">
