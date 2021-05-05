@@ -570,16 +570,7 @@
         </xsl:if>
     </xsl:template>
 
-      <xsl:template name="SimpleStringLoop">
-        <xsl:param name="input"/>
-        <xsl:if test="string-length($input) &gt; 0">
-            <xsl:variable name="v" select="substring-before($input, ';')"/>
-            <s><xsl:value-of select="$v"/></s>
-            <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ';')"/>
-            </xsl:call-template>
-        </xsl:if> 
-    </xsl:template>
+     
     
     <xsl:template name="empty-row" as="element()">
         <xsl:param name="namespace-uri" as="xs:string"/>
@@ -745,7 +736,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-     <xsl:variable name="v" select="'START'"/>    
+     
     <xsl:function name="nlb:author-lines" as="xs:string*">
         <xsl:param name="authors" as="xs:string*"/>
         <xsl:param name="line-length" as="xs:integer"/>
@@ -756,6 +747,17 @@
                 <xsl:with-param name="input" select="$authors"/>
             </xsl:call-template>
         <xsl:choose>
+
+         <xsl:template name="SimpleStringLoop">
+        <xsl:param name="input"/>
+        <xsl:if test="string-length($input) &gt; 0">
+            <xsl:variable name="v" select="substring-before($input, ';')"/>
+            <s><xsl:value-of select="$v"/></s>
+            <xsl:call-template name="SimpleStringLoop">
+                <xsl:with-param name="input" select="substring-after($input, ';')"/>
+            </xsl:call-template>
+        </xsl:if> 
+    </xsl:template>
             <xsl:when test="count($v) = 0">
                 <xsl:sequence select="('true')"/>
             </xsl:when>
