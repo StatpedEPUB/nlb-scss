@@ -329,22 +329,18 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
       
-          <!--  <xsl:for-each select="$author-lines">
+            <xsl:for-each select="$author-lines">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
-            </xsl:for-each>-->
+            </xsl:for-each>
 
              <xsl:call-template name="row">
-                <xsl:with-param name="content" select="$author-lines"/>
+                <xsl:with-param name="content" select="count($author-lines)"/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
 
-             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="$author-lines[2]"/>
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
             <!-- 2 empty rows before title -->
             <xsl:if test="count($author-lines)">
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
