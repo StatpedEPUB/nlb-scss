@@ -745,7 +745,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+     <xsl:variable name="v" select="'START'"/>    
     <xsl:function name="nlb:author-lines" as="xs:string*">
         <xsl:param name="authors" as="xs:string*"/>
         <xsl:param name="line-length" as="xs:integer"/>
