@@ -276,11 +276,12 @@ section {
         margin-top: 0;
         margin-bottom: 0;
         /*text-indent: 0;*/
-        text-indent:2;
+      
         text-align: left;
     }
     & > .Innrykk-5{
         text-indent:5;
+        display:block;
     }
      & > .Høyre-justert{
         text-align: right;
