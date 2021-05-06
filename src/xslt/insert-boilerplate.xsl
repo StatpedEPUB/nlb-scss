@@ -350,7 +350,7 @@
 
    <xsl:variable name="v">
        <xsl:call-template name="SimpleStringLoop">
-              <xsl:with-param name="input" select="$authors"/>
+              <xsl:with-param name="input" select="$author"/>
         
        </xsl:call-template>
        </xsl:variable>
@@ -358,12 +358,12 @@
           
                   
 
-            <!-- 2 empty rows before title -->
+            <!-- 2 empty rows before title 
             <xsl:if test="count($author-lines)">
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             </xsl:if>
-            <xsl:variable name="lines-used" select="if (count($author-lines)) then $lines-used + count($author-lines) + 2 else $lines-used"/>
+            <xsl:variable name="lines-used" select="if (count($author-lines)) then $lines-used + count($author-lines) + 2 else $lines-used"/>-->
             
            <xsl:for-each select="$title-lines">
                 <xsl:call-template name="row">
@@ -519,22 +519,7 @@
             <xsl:element name="h1" namespace="{$namespace-uri}">
                 <xsl:text>Om boka</xsl:text>
             </xsl:element>
-            <xsl:if test="not($authors-fit)">
-                <xsl:choose>
-                    <xsl:when test="count($author) = 1">
-                        <xsl:call-template name="row">
-                            <xsl:with-param name="content" select="concat('Forfatter: ',normalize-space($author))"/>
-                            <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        </xsl:call-template>
-                    </xsl:when>
-                    <xsl:when test="count($author) gt 1">
-                        <xsl:call-template name="row">
-                            <xsl:with-param name="content" select="concat('Forfattere: ',string-join(for $a in $author[not(position()=last())] return normalize-space($a), ', '), ' og ', normalize-space($author[last()]))"/>
-                            <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        </xsl:call-template>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:if>
+           
             <xsl:if test="not($title-fits)">
                 <xsl:call-template name="row">
                     <xsl:with-param name="content" select="concat('Full tittel: ',normalize-space($fulltitle))"/>
