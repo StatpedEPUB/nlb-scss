@@ -288,10 +288,7 @@
         
       
         
-        <xsl:variable name="title-lines" select="nlb:title-lines($fulltitle, 5, $line-width)" as="xs:string*"/>
-        <xsl:variable name="title-fits" select="$title-lines[1] = 'true'" as="xs:boolean"/>
-        <xsl:variable name="title-lines" select="if (not($title-fits) and count($title)) then nlb:title-lines($title, 5, $line-width) else $title-lines"/>
-        <xsl:variable name="title-lines" select="$title-lines[position() gt 1]" as="xs:string*"/>
+      
         
         <xsl:variable name="translator-lines" select="nlb:translator-lines($translator, $line-width, 'mfl.')" as="xs:string*"/>
         <xsl:variable name="translators-fit" select="$translator-lines[1] = 'true'" as="xs:boolean"/>
@@ -361,16 +358,14 @@
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
           
-         
+          <xsl:call-template name="SimpleStringLoop">
+              <xsl:with-param name="input" select="$title"/>
+               <xsl:with-param name="classes" select="'Innrykk-5'"/>
+              <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+        
+       </xsl:call-template>
             
-           <xsl:for-each select="$title-lines">
-                <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="."/>  
-                     <xsl:with-param name="classes" select="'Innrykk-5'"/>
-                  
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                </xsl:call-template>
-            </xsl:for-each>
+       
             
          <!--       <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$title"/>  
@@ -386,11 +381,11 @@
                 </xsl:call-template>-->
             
             <!-- 2 empty rows before translator -->
-            <xsl:if test="count($title-lines)">
+          
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             </xsl:if>
-            <xsl:variable name="lines-used" select="if (count($title-lines)) then $lines-used + count($title-lines) + 2 else $lines-used"/>
+          <!--  <xsl:variable name="lines-used" select="if (count($title-lines)) then $lines-used + count($title-lines) + 2 else $lines-used"/>-->
             
             <xsl:if test="count($translator-lines)">
                 <xsl:call-template name="row">
@@ -616,10 +611,12 @@
      <xsl:template name="SimpleStringLoop">
         <xsl:param name="input" as="xs:string"/>
          <xsl:param name="namespace-uri"/>
+          <xsl:param name="classes"/>
         <xsl:if test="string-length($input) &gt; 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
             <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$v2" />
+                     <xsl:with-param name="classes" select="$classes"/>
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
@@ -791,37 +788,7 @@
         </xsl:choose>
     </xsl:function>
     
-    <xsl:function name="nlb:title-lines" as="xs:string*">
-        <xsl:param name="title" as="xs:string"/>
-        <xsl:param name="lines-available" as="xs:integer"/>
-        <xsl:param name="line-length" as="xs:integer"/>
-        <!-- returns: ( [true|false], line1?, ..., lineN? ) -->
-        
-        <xsl:variable name="tokenized-title" select="tokenize($title,' +')"/>
-        
-        <xsl:variable name="title-never-break" select="nlb:strings-to-lines($tokenized-title, $line-length, 'never')"/>
-        <xsl:variable name="title-avoid-break" select="nlb:strings-to-lines($tokenized-title, $line-length, 'avoid')"/>
-        <xsl:variable name="title-always-break" select="nlb:strings-to-lines($tokenized-title, $line-length, 'always')"/>
-        <xsl:variable name="title-stripped" select="nlb:strip-last-line($title-avoid-break, $lines-available, $line-length)"/>
-        
-        <xsl:choose>
-            <xsl:when test="$title = ''">
-                <xsl:sequence select="('true')"/>
-            </xsl:when>
-            <xsl:when test="count($title-never-break) &gt; 0 and count($title-never-break) &lt;= $lines-available">
-                <xsl:sequence select="('true', $title-never-break)"/>
-            </xsl:when>
-            <xsl:when test="count($title-avoid-break) &gt; 0 and count($title-avoid-break) &lt;= $lines-available">
-                <xsl:sequence select="('true', $title-avoid-break)"/>
-            </xsl:when>
-            <xsl:when test="count($title-always-break) &gt; 0 and count($title-always-break) &lt;= $lines-available">
-                <xsl:sequence select="('true', $title-always-break)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:sequence select="('false', $title-stripped)"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
+   
     
     <xsl:function name="nlb:strip-last-line" as="xs:string*">
         <xsl:param name="lines" as="xs:string*"/>
