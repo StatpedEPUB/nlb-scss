@@ -337,13 +337,13 @@
       
  
 
-   <xsl:variable name="v">
+   
        <xsl:call-template name="SimpleStringLoop">
               <xsl:with-param name="input" select="$author"/>
               <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
         
        </xsl:call-template>
-       </xsl:variable>
+     
 
           
                   
@@ -616,11 +616,10 @@
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ';')"/>
+                <xsl:with-param name="input" select="substring-after($input, ';')"/>   
+                 <xsl:param name="namespace-uri" as="xs:string"/>
             </xsl:call-template>
-               <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ';')"/>
-            </xsl:call-template>
+               
         </xsl:if> 
     </xsl:template>
 
