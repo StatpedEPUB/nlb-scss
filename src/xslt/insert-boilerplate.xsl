@@ -610,8 +610,9 @@
 
      <xsl:template name="SimpleStringLoop">
         <xsl:param name="input" as="xs:string"/>
+         <xsl:param name="classes"/>
          <xsl:param name="namespace-uri"/>
-          <xsl:param name="classes"/>
+         
         <xsl:if test="string-length($input) &gt; 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
             <xsl:call-template name="row">
