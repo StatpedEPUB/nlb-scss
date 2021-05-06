@@ -348,12 +348,12 @@
           
                   
 
-            <!-- 2 empty rows before title 
-            <xsl:if test="count($author-lines)">
+            <!-- 2 empty rows before title -->
+          
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
-            </xsl:if>
-            <xsl:variable name="lines-used" select="if (count($author-lines)) then $lines-used + count($author-lines) + 2 else $lines-used"/>-->
+           
+         
             
             
            <xsl:for-each select="$title-lines">
