@@ -354,16 +354,14 @@
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
            
          
+            <xsl:call-template name="SimpleStringLoop">
+              <xsl:with-param name="input" select="$title"/>
+              <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+        
+            </xsl:call-template>
+     
             
-            
-           <xsl:for-each select="$title-lines">
-                <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="."/>  
-                     <xsl:with-param name="classes" select="'Innrykk-5'"/>
-                  
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                </xsl:call-template>
-            </xsl:for-each>
+          
             
          <!--       <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$title"/>  
