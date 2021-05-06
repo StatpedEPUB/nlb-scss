@@ -610,7 +610,7 @@
 
      <xsl:template name="SimpleStringLoop">
         <xsl:param name="input" as="xs:string"/>
-         <xsl:param name="classes"/>
+         <xsl:param name="classes" as="xs:string*"/>
          <xsl:param name="namespace-uri"/>
          
         <xsl:if test="string-length($input) &gt; 0">
