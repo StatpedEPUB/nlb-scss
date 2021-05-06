@@ -617,7 +617,7 @@
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
                 <xsl:with-param name="input" select="substring-after($input, ';')"/>   
-                 <xsl:with-param name="namespace-uri" as="xs:string"/>
+               
             </xsl:call-template>
                
         </xsl:if> 
