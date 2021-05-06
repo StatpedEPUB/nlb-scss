@@ -637,13 +637,14 @@
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ';')"/>   
+                <xsl:with-param name="input" select="substring-after($input, ';')"/> 
+                <xsl:with-param name="classes" select="'Innrykk-5'"/>  
                   <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
                
         </xsl:if> 
     </xsl:template>
-
+   
 
     <xsl:function name="nlb:level-element-name" as="xs:string">
         <xsl:param name="namespace-uri" as="xs:string"/>
