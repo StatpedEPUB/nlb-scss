@@ -629,9 +629,10 @@
          
         <xsl:if test="string-length($input) &gt; 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
+             <xsl:variable name="class2" select="$classes"/>
             <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$v2" />
-                     <xsl:with-param name="classes" select="$classes"/>
+                     <xsl:with-param name="classes" select="$class2"/>
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
