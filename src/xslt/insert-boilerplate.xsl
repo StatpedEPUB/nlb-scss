@@ -612,12 +612,12 @@
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
             <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$v2" />
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                  
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
                 <xsl:with-param name="input" select="substring-after($input, ';')"/>   
-                  <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                
             </xsl:call-template>
                
         </xsl:if> 
