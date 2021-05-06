@@ -355,7 +355,7 @@
            
          
             <xsl:call-template name="SimpleStringLoop">
-              <xsl:with-param name="input" select="$title"/>
+              <xsl:with-param name="input" select="$author"/>
               <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
         
             </xsl:call-template>
