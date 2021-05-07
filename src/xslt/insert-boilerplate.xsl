@@ -637,7 +637,7 @@
     </xsl:template> -->
 
      <xsl:template name="SimpleStringLoop">
-      <xsl:param name="i"/>
+    
         <xsl:param name="input" as="xs:string"/>
          <xsl:param name="classes" as="xs:string*"/>
          <xsl:param name="namespace-uri"/>
@@ -652,7 +652,7 @@
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
-             <xsl:with-param name="i" select="$i+1"/>
+         
                 <xsl:with-param name="input" select="substring-after($input, ';')"/> 
                 <xsl:with-param name="classes" select="$class2"/>  
                   <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
