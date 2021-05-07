@@ -409,7 +409,7 @@
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
 
-            <xsl:variable name="lines-used" select="22"/>
+            <xsl:variable name="lines-used" select="19"/>
             
             <!-- fill empty lines up to and including page height minus 6 (i.e. row 22) 
             <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 6">
