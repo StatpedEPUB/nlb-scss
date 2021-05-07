@@ -362,19 +362,7 @@
      
 
         
-            
-         <!--       <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$title"/>  
-                     <xsl:with-param name="classes" select="'Innrykk-5'"/>
-                   
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                </xsl:call-template>
-              <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$subtitle"/>  
-                     <xsl:with-param name="classes" select="'Innrykk-5'"/>
-                   
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                </xsl:call-template>-->
+       
             
             <!-- 2 empty rows before translator -->
             <xsl:if test="count($title-lines)">
@@ -421,7 +409,7 @@
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
 
-            <xsl:variable name="lines-used" select="if (count($translator-lines)) then $lines-used + 1 + count($translator-lines) + 2 else $lines-used"/>
+            <xsl:variable name="lines-used" select="18"/>
             
             <!-- fill empty lines up to and including page height minus 6 (i.e. row 22) 
             <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 6">
@@ -617,23 +605,6 @@
         </xsl:choose>
     </xsl:template>
 
-    <!--<xsl:template name="SimpleStringLoop">
-        <xsl:param name="input" as="xs:string"/>
-         <xsl:param name="namespace-uri"/>
-        <xsl:if test="string-length($input) &gt; 0">
-            <xsl:variable name="v2" select="substring-before($input, ';')"/>
-            <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$v2" />
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-            <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ';')"/>   
-                  <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
-               
-        </xsl:if> 
-    </xsl:template> -->
 
      <xsl:template name="SimpleStringLoop">
         <xsl:param name="input" as="xs:string"/>
