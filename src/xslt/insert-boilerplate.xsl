@@ -334,16 +334,27 @@
             </xsl:for-each>-->
 
            
-      
+        <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
+           <!--  if there is a semicolon delimeter there are more than one authors -->
+                <xsl:if test="not($author-multiple)">  <!-- no delimiter found ; -->
+                    <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="$author" />
+                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                        <xsl:with-param name="inline" select="true()"/>
+                      </xsl:call-template>
+               </xsl:if>
+
+               <xsl:if test="$author-multiple">   
+                    <xsl:call-template name="row">
+                   
+                    <xsl:with-param name="content" select="concat($author-multiple,' mfl.')"/>
+                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                        <xsl:with-param name="inline" select="true()"/>
+                      </xsl:call-template>
+               </xsl:if>
+                  
  
 
-   
-       <xsl:call-template name="SimpleStringLoop">
-              <xsl:with-param name="input" select="$author"/>
-              <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-        
-       </xsl:call-template>
-     
 
           
                   
@@ -476,6 +487,19 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="final-rows" as="element()*">
+          <xsl:call-template name="row">
+                <xsl:with-param name="content" select="'Denne boka er skrevet av:'"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                <xsl:with-param name="inline" select="true()"/>
+            </xsl:call-template>
+
+   
+       <xsl:call-template name="SimpleStringLoop">
+              <xsl:with-param name="input" select="$author"/>
+              <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+        
+       </xsl:call-template>
+     
             
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på sien. Full celle i margen og foran sidetallet nederst
