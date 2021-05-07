@@ -420,7 +420,7 @@
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
 
-            <xsl:variable name="lines-used" select="19"/>
+            <xsl:variable name="lines-used" select="14"/>
             
             <!-- fill empty lines up to and including page height minus 6 (i.e. row 22) 
             <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 6">
@@ -436,7 +436,7 @@
                 </xsl:call-template>
             </xsl:for-each>
             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'cccccccccccccccccccccccc'"/> <!--38 - 5= 33-->
+                <xsl:with-param name="content" select="'cccccccccccccccccccccccccccccccc'"/> 
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
 
@@ -500,7 +500,8 @@
         
        </xsl:call-template>
      
-            
+             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
+             
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på sien. Full celle i margen og foran sidetallet nederst
                 til høyre markerer sideskift i originalboka. '"/>
