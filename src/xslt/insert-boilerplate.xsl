@@ -640,7 +640,7 @@
          <xsl:param name="classes" as="xs:string*"/>
          <xsl:param name="namespace-uri"/>
          
-        <xsl:if test="string-length($input) &gt; 0">
+        <xsl:if test="string-length($input) &gt;= 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
              <xsl:variable name="class2" select="$classes"/>
             <xsl:call-template name="row">
