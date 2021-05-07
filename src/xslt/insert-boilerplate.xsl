@@ -419,7 +419,7 @@
             </xsl:for-each>-->
 
              <!-- fill empty lines up to and including page height minus 11 (i.e. row 18) -->
-            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 11">
+            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 5">
                 <xsl:call-template name="empty-row">
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
