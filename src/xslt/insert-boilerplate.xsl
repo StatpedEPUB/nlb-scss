@@ -431,8 +431,7 @@
             </xsl:for-each>-->
 
              <!-- fill empty lines up to and including page height minus 11 (i.e. row 18) -->
-           <!-- <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 11">-->
-             <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 11">
+            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 11">
                 <xsl:call-template name="empty-row">
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
@@ -491,7 +490,7 @@
         <xsl:variable name="final-rows" as="element()*">
             
             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på siden. Full celle i margen og foran sidetallet nederst
+                <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på sien. Full celle i margen og foran sidetallet nederst
                 til høyre markerer sideskift i originalboka. '"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
@@ -637,12 +636,11 @@
     </xsl:template> -->
 
      <xsl:template name="SimpleStringLoop">
-    
         <xsl:param name="input" as="xs:string"/>
          <xsl:param name="classes" as="xs:string*"/>
          <xsl:param name="namespace-uri"/>
          
-        <xsl:if test="string-length($input) &gt;= 0">
+        <xsl:if test="string-length($input) &gt; 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
              <xsl:variable name="class2" select="$classes"/>
             <xsl:call-template name="row">
@@ -652,14 +650,12 @@
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
-         
                 <xsl:with-param name="input" select="substring-after($input, ';')"/> 
                 <xsl:with-param name="classes" select="$class2"/>  
                   <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
                
         </xsl:if> 
-         <xsl:value-of select="$i"/>
     </xsl:template>
    
 
