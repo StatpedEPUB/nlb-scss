@@ -337,12 +337,13 @@
       
  
 
-     <xsl:variable name="lines-used1">
+   
        <xsl:call-template name="SimpleStringLoop">
               <xsl:with-param name="input" select="$author"/>
               <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-        </xsl:call-template>
-     <xsl:variable/>
+        
+       </xsl:call-template>
+     
 
           
                   
@@ -658,9 +659,7 @@
             </xsl:call-template>
                
         </xsl:if> 
-         <div>
-        <xsl:value-of select="$i"/>
-      </div>
+         <xsl:value-of select="$i"/>
     </xsl:template>
    
 
