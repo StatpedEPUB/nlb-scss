@@ -636,6 +636,7 @@
          <xsl:param name="classes" as="xs:string*"/>
          <xsl:param name="namespace-uri"/>
         <xsl:variable name="nb_char" select="string-length($input)-string-length(translate($input,';',''))"/>
+      
        <xsl:choose>
        <xsl:when test="$nb_char !=0">  <!-- delimiter found-->
          
