@@ -636,8 +636,8 @@
          <xsl:param name="classes" as="xs:string*"/>
          <xsl:param name="namespace-uri"/>
         <xsl:variable name="nb_char" select="string-length($input)-string-length(translate($input,';',''))"/>
-      
-       <xsl:if test="$nb_char !=0">  <!-- delimiter found-->
+       <choose>
+       <when test="$nb_char !=0">  <!-- delimiter found-->
          
         <xsl:if test="string-length($input) &gt; 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
@@ -655,7 +655,16 @@
             </xsl:call-template>
                
         </xsl:if> 
-      </xsl:if> 
+      </when> 
+      <otherwise>
+        <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="$input" />
+                     <xsl:with-param name="classes" select="$class2"/>
+                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                        <xsl:with-param name="inline" select="true()"/>
+                      </xsl:call-template>
+      </otherwise>
+
    
     </xsl:template>
    
