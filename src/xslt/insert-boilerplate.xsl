@@ -659,12 +659,12 @@
       <otherwise>
         <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$input" />
-                     <xsl:with-param name="classes" select="$class2"/>
+                     <xsl:with-param name="classes" select="'Innrykk-5'"/>
                       <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
       </otherwise>
-
+</choose>
    
     </xsl:template>
    
