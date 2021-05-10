@@ -637,7 +637,7 @@
          <xsl:param name="namespace-uri"/>
         <xsl:variable name="nb_char" select="string-length($input)-string-length(translate($input,';',''))"/>
       
-       <xsl-if test="nb_char"!=0/>  <!-- delimiter found-->
+       <xsl-if test="nb_char"!=0>  <!-- delimiter found-->
          
         <xsl:if test="string-length($input) &gt; 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
