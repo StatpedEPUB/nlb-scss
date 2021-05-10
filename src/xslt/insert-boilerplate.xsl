@@ -364,7 +364,7 @@
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                     
-               <xsl:call-template name="SimpleStringLoop">
+              <xsl:call-template name="SimpleStringLoop">
               <xsl:with-param name="input" select="$fulltitle"/>
               <xsl:with-param name="classes" select="'Innrykk-5'"/>
               <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
@@ -635,6 +635,9 @@
         <xsl:param name="input" as="xs:string"/>
          <xsl:param name="classes" as="xs:string*"/>
          <xsl:param name="namespace-uri"/>
+        <xsl:variable name="nb_char" select="string-length($input)-string-length(translate($input,';',''))"/>
+      
+       <xsl-if test="nb_char"!=0/>  <!-- delimiter found-->
          
         <xsl:if test="string-length($input) &gt; 0">
             <xsl:variable name="v2" select="substring-before($input, ';')"/>
@@ -652,6 +655,8 @@
             </xsl:call-template>
                
         </xsl:if> 
+      </xsl:if> 
+
     </xsl:template>
    
 
