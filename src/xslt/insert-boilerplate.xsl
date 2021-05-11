@@ -501,28 +501,7 @@
                 <xsl:text>Merknad til punktskriftutgaven</xsl:text>
             </xsl:element>
            
-            <xsl:if test="not($title-fits)">
-                <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="concat('Full tittel: ',normalize-space($fulltitle))"/>
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                </xsl:call-template>
-            </xsl:if>
-            <xsl:if test="not($translators-fit)">
-                <xsl:choose>
-                    <xsl:when test="count($translator) = 1">
-                        <xsl:call-template name="row">
-                            <xsl:with-param name="content" select="concat('Oversatt av: ',normalize-space($translator))"/>
-                            <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        </xsl:call-template>
-                    </xsl:when>
-                    <xsl:when test="count($translator) gt 1">
-                        <xsl:call-template name="row">
-                            <xsl:with-param name="content" select="concat('Oversatt av: ',string-join(for $t in $translator[not(position()=last())] return normalize-space($t), ', '), ' og ', normalize-space($translator[last()]))"/>
-                            <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        </xsl:call-template>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:if>
+        
             <xsl:if test="not($notes-present and $notes-placement = 'bottom-of-page')">
                 <xsl:if test="$notes-present">
                     <xsl:call-template name="row">
