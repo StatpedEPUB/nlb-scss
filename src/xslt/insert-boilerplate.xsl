@@ -631,7 +631,30 @@
         </xsl:choose>
     </xsl:function>
     
-  
+  <xsl:function name="nlb:element-text" as="xs:string?">
+        <xsl:param name="element" as="element()"/>
+        
+        <xsl:variable name="result" as="xs:string*">
+            <xsl:for-each select="$element/node()">
+                <xsl:if test="(tokenize(@class,'\s+'), tokenize(@epub:type,'\s+')) = ('title', 'subtitle')">
+                    <xsl:sequence select="'&#10;'"/>
+                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="self::text()">
+                        <xsl:sequence select="replace(.,'\s+',' ')"/>
+                    </xsl:when>
+                    <xsl:when test="(self::html:br | self::dtbook:br)[tokenize(@class,'\s+') = 'display-braille']">
+                        <xsl:sequence select="'&#10;'"/>
+                    </xsl:when>
+                    <xsl:when test="self::*">
+                        <xsl:sequence select="nlb:element-text(.)"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:value-of select="if (count($result)) then replace(replace(replace(replace(string-join($result,''),'&#10; ',' &#10;'),' +',' '),'(^ | $)',''),'^&#10;+','') else ()"/>
+    </xsl:function>
+    
    
     
 </xsl:stylesheet>
