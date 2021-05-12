@@ -393,14 +393,7 @@
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
 
-            <xsl:variable name="lines-used" select="15"/>
-          
-            <xsl:for-each select="($lines-used + 1) to xs:integer($page-height) - 5">
-                <xsl:call-template name="empty-row">
-                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                </xsl:call-template>
-            </xsl:for-each>
-
+         
               <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
               <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
   <!-- CCCCCC  ON LINE 23-->  
