@@ -397,11 +397,11 @@
               <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
               <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
   <!-- CCCCCC  ON LINE 23-->  
-            <xsl:call-template name="row">
+        <!--    <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'cccccccccccccccccccccccccccccc'"/> 
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-            </xsl:call-template>
-
+            </xsl:call-template>-->
+cccccccccccccccccccccccccccccccccccccc
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="concat('STATPED, ',format-dateTime($datetime, '[Y]'))"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
