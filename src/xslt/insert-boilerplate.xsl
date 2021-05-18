@@ -398,7 +398,7 @@
               <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
   <!-- CCCCCC  ON LINE 23-->  
            <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'cccccccccccccccccccccccccccccccc'"/> 
+                <xsl:with-param name="content" select="'cccccccccccccccccccccccccccccc'"/> 
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
 
@@ -459,7 +459,7 @@
      
              <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
 
-          <xsl:call-template name="row">
+            <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på siden. Full celle i margen og foran sidetallet nederst
                 til høyre markerer sideskift i originalboka. '"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
@@ -468,20 +468,14 @@
 
             <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Tekst og bilder kan være flyttet til en annen side for å unngå
-                å bryte opp løpende tekst. Ordforklaringer og stikkord finner du som regel etter teksten de tilhører, 
+                å bryte opp løpende tekst. Ordforlaringer og stikkord finner du som reget etter teksten de tilhører, 
                etter eventuelle bilder. '"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
 
-             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'Bildebeskrivelser står mellom punktene (56-3) og (6-23): <.Bildebeskrivelse’;'"/>
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                <xsl:with-param name="inline" select="true()"/>
-            </xsl:call-template>
-
            <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'Til uthevinger generelt brukes punktene (23) og (56): ;Utheving<'"/>
+                <xsl:with-param name="content" select="' Til uthevinger generelt brukes punktene (#23) og (#56): ; Utheving |.'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
