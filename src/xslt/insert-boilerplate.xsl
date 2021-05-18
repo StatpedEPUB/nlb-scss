@@ -459,7 +459,7 @@ cccccccccccccccccccccccccccccccc
      
              <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
  
-        <xsl:choose>
+   <!--    <xsl:choose>
                 <xsl:when test="$language-id= 'nn'">
                 <xsl:variable name="final-rows" as="element()*">
                           <xsl:call-template name="row">
@@ -543,9 +543,9 @@ cccccccccccccccccccccccccccccccc
                             </xsl:element>
                              </xsl:otherwise>
                             </xsl:when>
-                   </xsl:choose>
+                   </xsl:choose>--> 
              
-       <!--     <xsl:call-template name="row">
+           <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på siden. Full celle i margen og foran sidetallet nederst
                 til høyre markerer sideskift i originalboka. '"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
@@ -582,7 +582,7 @@ cccccccccccccccccccccccccccccccc
             <xsl:attribute name="class" select="'pef-about'"/>
             <xsl:element name="h1" namespace="{$namespace-uri}">
                 <xsl:text>Merknad til punktskriftutgaven</xsl:text>
-            </xsl:element>-->
+            </xsl:element>
            
         
             <xsl:if test="not($notes-present and $notes-placement = 'bottom-of-page')">
