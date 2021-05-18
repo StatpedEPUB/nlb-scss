@@ -474,10 +474,14 @@ cccccccccccccccccccccccccccccccccccccc
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
             
-           
+             <xsl:call-template name="row">
+                <xsl:with-param name="content" select="'Bildebeskrivelser står mellom punktene (56-3) og (6-23): &lt;.Bildebeskrivelse’;'"/>
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                <xsl:with-param name="inline" select="true()"/>
+            </xsl:call-template>
 
            <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'Til uthevinger generelt brukes punktene (23) og (56): ;Utheving<'"/>
+                <xsl:with-param name="content" select="'Til uthevinger generelt brukes punktene (23) og (56): ;Utheving&lt;'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
