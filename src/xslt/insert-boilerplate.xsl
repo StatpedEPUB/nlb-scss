@@ -461,6 +461,7 @@ cccccccccccccccccccccccccccccccc
  
         <xsl:choose>
                 <xsl:when test="$language-id= 'nn'">
+                <xsl:variable name="final-rows" as="element()*">
                           <xsl:call-template name="row">
                                 <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på siden. Full celle i margen og foran sidetallet nederst
                                 til høyre markerer sideskift i originalboka. '"/>
@@ -501,6 +502,7 @@ cccccccccccccccccccccccccccccccc
                             </xsl:element>
                                     </xsl:when>
                                     <xsl:otherwise>
+                                    <xsl:variable name="final-rows" as="element()*">
                             <xsl:call-template name="row">
                                 <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på siden. Full celle i margen og foran sidetallet nederst
                                 til høyre markerer sideskift i originalboka. '"/>
@@ -539,7 +541,7 @@ cccccccccccccccccccccccccccccccc
                             <xsl:element name="h1" namespace="{$namespace-uri}">
                                 <xsl:text>Merknad til punktskriftutgaven</xsl:text>
                             </xsl:element>
-                                        </xsl:otherwise>
+                             </xsl:otherwise>
                             </xsl:when>
                    </xsl:choose>
              
