@@ -318,13 +318,12 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
-      
 
-         <xsl:for-each select="author">
- <xsl:value-of select="author"/>
+         <xsl:for-each select="$author">
+  <xsl:value-of select="concat('Item ',position(),': ',.,'&#xA;')"/>
  <xsl:text> ; </xsl:text>
-
 </xsl:for-each> 
+
         <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
            <!--  if there is a semicolon delimeter there are more than one authors -->
                 <xsl:if test="not($author-multiple)">  <!-- no delimiter found ; -->
