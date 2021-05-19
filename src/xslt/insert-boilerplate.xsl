@@ -321,7 +321,7 @@
       
 
          <xsl:for-each select="$author">
- <xsl:value-of select="$author"/>
+ 
  <xsl:text> ; </xsl:text>
 
 </xsl:for-each> 
