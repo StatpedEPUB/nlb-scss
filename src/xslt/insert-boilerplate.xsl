@@ -101,6 +101,8 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+
+  
         <xsl:variable name="fulltitle" as="xs:string">
             <xsl:choose>
                 <xsl:when test="$namespace-uri = $dtbook-namespace">
@@ -317,8 +319,13 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
       
-                  
-        <xsl:variable name="author-multiple" select="substring-before($author,',')"/>
+
+         <xsl:for-each select="$author">
+ <xsl:value-of select="$author"/>
+ <xsl:text> ; </xsl:text>
+
+</xsl:for-each> 
+        <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
            <!--  if there is a semicolon delimeter there are more than one authors -->
                 <xsl:if test="not($author-multiple)">  <!-- no delimiter found ; -->
                     <xsl:call-template name="row">
@@ -583,7 +590,7 @@ cccccccccccccccccccccccccccccccc
        <xsl:when test="$nb_char !=0">  <!-- delimiter found-->
          
         <xsl:if test="string-length($input) &gt; 0">
-            <xsl:variable name="v2" select="substring-before($input, ',')"/>
+            <xsl:variable name="v2" select="substring-before($input, ';')"/>
              <xsl:variable name="class2" select="$classes"/>
             <xsl:call-template name="row">
                     <xsl:with-param name="content" select="$v2" />
@@ -592,7 +599,7 @@ cccccccccccccccccccccccccccccccc
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ',')"/> 
+                <xsl:with-param name="input" select="substring-after($input, ';)"/> 
                 <xsl:with-param name="classes" select="$class2"/>  
                   <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
