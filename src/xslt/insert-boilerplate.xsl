@@ -101,13 +101,6 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-
-   <xsl:template match="author">
-        <xsl:value-of select="@ref"/>
-        <xsl:if test="position() !=last()" >
-            <xsl:text>,</xsl:text>
-        </xsl:if>
-    </xsl:template>
         <xsl:variable name="fulltitle" as="xs:string">
             <xsl:choose>
                 <xsl:when test="$namespace-uri = $dtbook-namespace">
@@ -324,13 +317,7 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
       
-
-             <xsl:template match="author">
-        <xsl:value-of select="@ref"/>
-        <xsl:if test="position() !=last()" >
-            <xsl:text>,</xsl:text>
-        </xsl:if>
-    </xsl:template>      
+                  
         <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
            <!--  if there is a semicolon delimeter there are more than one authors -->
                 <xsl:if test="not($author-multiple)">  <!-- no delimiter found ; -->
@@ -374,7 +361,7 @@
         
        
             
-              <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
+          
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                 <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
                  <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
@@ -470,7 +457,7 @@ cccccccccccccccccccccccccccccccc
         
        </xsl:call-template>-->
      
-         
+             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
 
            <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Punktsidetallet er midtstilt nederst på siden. Full celle i margen og foran sidetallet nederst
@@ -605,7 +592,7 @@ cccccccccccccccccccccccccccccccc
                         <xsl:with-param name="inline" select="true()"/>
                       </xsl:call-template>
             <xsl:call-template name="SimpleStringLoop">
-                <xsl:with-param name="input" select="substring-after($input, ';)"/> 
+                <xsl:with-param name="input" select="substring-after($input, ';')"/> 
                 <xsl:with-param name="classes" select="$class2"/>  
                   <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
             </xsl:call-template>
