@@ -444,7 +444,7 @@ cccccccccccccccccccccccccccccccc
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="final-rows" as="element()*">
-          <xsl:call-template name="row">
+      <!--   <xsl:call-template name="row">
                 <xsl:with-param name="content" select="'Denne boka er skrevet av:'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
@@ -455,7 +455,7 @@ cccccccccccccccccccccccccccccccc
               <xsl:with-param name="input" select="$author"/>
               <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
         
-       </xsl:call-template>
+       </xsl:call-template>--> 
      
              <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
 
