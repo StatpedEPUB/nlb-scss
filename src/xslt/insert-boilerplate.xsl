@@ -324,8 +324,9 @@
        
            
   <xsl:for-each select="$author-lines">
+  <xsl:variable name="parent-position" select="position()" />
      <xsl:choose>
-            <xsl:when test="count($author-lines) = 1">
+            <xsl:when test="$parent-position = 1">
              <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
