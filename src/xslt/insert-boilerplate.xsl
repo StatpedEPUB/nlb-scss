@@ -335,7 +335,7 @@
              <xsl:when test="$parent-position = 2 and count($author-lines) &gt 1">
          
              <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="concat(.,' mfl.'"/>
+                    <xsl:with-param name="content" select="concat(.,' mfl.')"/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                        <xsl:with-param name="inline" select="true()"/>
                 </xsl:call-template>
