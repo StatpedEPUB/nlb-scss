@@ -326,13 +326,13 @@
   <xsl:for-each select="$author-lines">
   <xsl:variable name="parent-position" select="position()" />
      <xsl:choose>
-            <xsl:when test="$parent-position = 1">
+            <xsl:when test="$parent-position = 1 and count($author-lines) = 1">
              <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
             </xsl:when>
-             <xsl:when test="$parent-position = 2 and count($author-lines) &gt; 1">
+             <xsl:when test="$parent-position = 1 and count($author-lines) &gt; 1">
          
              <xsl:call-template name="row">
                     <xsl:with-param name="content" select="concat(.,' mfl.')"/>
