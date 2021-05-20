@@ -322,13 +322,18 @@
             <xsl:variable name="lines-used" select="3"/>
       
        
-                <xsl:call-template name="row">
-                   
-                    <xsl:with-param name="content" select="$author-lines[position() = 1]"/>
+           
+  <xsl:for-each select="$author-lines">
+     <xsl:choose>
+            <xsl:when test="$author-lines[position() = 1]">
+             <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="."/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
-           
- 
+            </xsl:when>
+          </xsl:choose>
+                
+            </xsl:for-each>
 
          <!---   <xsl:choose>
             <xsl:when test="count($author-lines) &gt 1">
