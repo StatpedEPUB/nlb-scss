@@ -340,8 +340,7 @@
                 </xsl:call-template>
             </xsl:when>
           </xsl:choose>
-                
-            </xsl:for-each>
+         </xsl:for-each>
 
          <!---   <xsl:choose>
             <xsl:when test="count($author-lines) &gt 1">
