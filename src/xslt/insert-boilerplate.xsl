@@ -642,6 +642,23 @@ cccccccccccccccccccccccccccccccc
         </xsl:variable>
         <xsl:value-of select="if (count($result)) then replace(replace(replace(replace(string-join($result,''),'&#10; ',' &#10;'),' +',' '),'(^ | $)',''),'^&#10;+','') else ()"/>
     </xsl:function>
+
+       <!-- nlb:braille-length accounts for capital letter braille characters, and number characters -->
+    <xsl:function name="nlb:braille-length">
+        <xsl:param name="string" as="xs:string?"/>
+        <xsl:choose>
+            <xsl:when test="not($string)">
+                <xsl:value-of select="0"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="expanded-string" select="replace($string,'&#10;','')"/>                              <!-- ignore newline characters; they are only used to suggest line breaks -->
+                <xsl:variable name="expanded-string" select="replace($expanded-string,'[A-Z]','aa')"/>                   <!-- braille character before upper case characters -->
+                <xsl:variable name="expanded-string" select="replace($expanded-string,'(^|[^\d])(\d)','$1.$2')"/>        <!-- braille character before numbers -->
+                <xsl:variable name="expanded-string" select="replace($expanded-string,'([^a-zA-Z0-9 ,.;:!-])','$1$1')"/> <!-- special characters might be represented with two braille characters -->
+                <xsl:value-of select="string-length($expanded-string)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     
  <xsl:function name="nlb:strings-to-lines-always-break" as="xs:string*">
         <xsl:param name="strings" as="xs:string*"/>
@@ -662,7 +679,7 @@ cccccccccccccccccccccccccccccccc
         <xsl:sequence select="if ($try-length &gt; 1 and count($result[nlb:braille-length(.) &gt; $line-length])) then nlb:strings-to-lines-always-break($strings, $line-length, $try-length - 1) else $result"/>
     </xsl:function>
     
-    
+
     <xsl:function name="nlb:strings-to-lines" as="xs:string*">
         <xsl:param name="strings" as="xs:string*"/>
         <xsl:param name="line-length" as="xs:integer"/>
