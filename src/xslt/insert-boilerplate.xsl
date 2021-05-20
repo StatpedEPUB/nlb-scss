@@ -286,7 +286,11 @@
             </xsl:choose>
         </xsl:variable>
         
-         
+        <xsl:variable name="author-lines" select="nlb:author-lines($author, $line-width, 'mfl.')" as="xs:string*"/>
+        <xsl:variable name="authors-fit" select="$author-lines[1] = 'true'" as="xs:boolean"/>
+        <xsl:variable name="author-lines" select="$author-lines[position() gt 1]" as="xs:string*"/>
+        <xsl:variable name="author-lines" select="if (count($author) gt 1 and not(count($author-lines))) then 'Flere forfattere' else $author-lines"/>
+        
         
         <xsl:variable name="grade-text" as="xs:string">
             <xsl:choose>
@@ -317,26 +321,12 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
       
-                  
-        <xsl:variable name="author-multiple" select="substring-before($author,';')"/>
-           <!--  if there is a semicolon delimeter there are more than one authors -->
-                <xsl:if test="not($author-multiple)">  <!-- no delimiter found ; -->
-                    <xsl:call-template name="row">
-                    <xsl:with-param name="content" select="$author" />
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-               </xsl:if>
-
-               <xsl:if test="$author-multiple">   
-                    <xsl:call-template name="row">
-                   
-                    <xsl:with-param name="content" select="concat($author-multiple,' mfl.')"/>
-                      <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-                        <xsl:with-param name="inline" select="true()"/>
-                      </xsl:call-template>
-               </xsl:if>
-                  
+         <xsl:for-each select="$author-lines">
+                <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="."/>
+                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                </xsl:call-template>
+            </xsl:for-each>
  
 
 
@@ -653,6 +643,64 @@ cccccccccccccccccccccccccccccccc
         <xsl:value-of select="if (count($result)) then replace(replace(replace(replace(string-join($result,''),'&#10; ',' &#10;'),' +',' '),'(^ | $)',''),'^&#10;+','') else ()"/>
     </xsl:function>
     
-   
+    <xsl:function name="nlb:author-lines" as="xs:string*">
+        <xsl:param name="authors" as="xs:string*"/>
+        <xsl:param name="line-length" as="xs:integer"/>
+        <xsl:param name="last-line-if-cropped" as="xs:string"/>
+        <!-- returns: ( [true|false], line1?, line2?, line3? ) -->
+        
+        <xsl:choose>
+            <xsl:when test="count($authors) = 0">
+                <xsl:sequence select="('true')"/>
+            </xsl:when>
+            <xsl:when test="count($authors) = 1">
+                <xsl:sequence select="nlb:fit-name-to-lines($authors[1], 3, $line-length)"/>
+            </xsl:when>
+            <xsl:when test="count($authors) = 2">
+                <xsl:variable name="author-1-1" select="nlb:fit-name-to-lines($authors[1], 1, $line-length)" as="xs:string*"/>
+                <xsl:variable name="author-1-2" select="nlb:fit-name-to-lines($authors[1], 2, $line-length)" as="xs:string*"/>
+                <xsl:variable name="author-2-1" select="nlb:fit-name-to-lines($authors[2], 1, $line-length)" as="xs:string*"/>
+                <xsl:variable name="author-2-2" select="nlb:fit-name-to-lines($authors[2], 2, $line-length)" as="xs:string*"/>
+                
+                <xsl:variable name="authors-1-2" select="($author-1-1[position() gt 1], $author-2-2[position() gt 1])" as="xs:string*"/>
+                <xsl:variable name="authors-2-1" select="($author-1-2[position() gt 1], $author-2-1[position() gt 1])" as="xs:string*"/>
+                
+                <xsl:variable name="authors-1-2-fits" select="$author-1-1[1] = 'true' and $author-2-2[1] = 'true'" as="xs:boolean"/>
+                <xsl:variable name="authors-2-1-fits" select="$author-1-2[1] = 'true' and $author-2-1[1] = 'true'" as="xs:boolean"/>
+                
+                <xsl:choose>
+                    <xsl:when test="$authors-1-2-fits">
+                        <!-- first author on 1 line, second author on 2 lines -->
+                        <xsl:sequence select="('true', $authors-1-2)"/>
+                    </xsl:when>
+                    <xsl:when test="$authors-2-1-fits">
+                        <!-- first author on 2 lines, second author on 1 line -->
+                        <xsl:sequence select="('true', $authors-2-1)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- can't make 2 authors fit on 3 lines; use only first author -->
+                        <xsl:sequence select="('false', $author-1-2[position() gt 1], $last-line-if-cropped)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="count($authors) gt 2">
+                <xsl:variable name="author-1" select="nlb:fit-name-to-lines($authors[1], 1, $line-length)" as="xs:string*"/>
+                <xsl:variable name="author-2" select="nlb:fit-name-to-lines($authors[2], 1, $line-length)" as="xs:string*"/>
+                <xsl:sequence select="'false'"/>
+                <xsl:choose>
+                    <xsl:when test="$author-1[1] = 'true' and $author-2[1] = 'true'">
+                        <!-- 2 authors fit on 2 lines -->
+                        <xsl:sequence select="($author-1[2], $author-2[2])"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- can't make 2 authors fit on 2 lines; use only first author -->
+                        <xsl:sequence select="nlb:fit-name-to-lines($authors[1], 2, $line-length)[position() gt 1]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:sequence select="$last-line-if-cropped"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
+    
     
 </xsl:stylesheet>
