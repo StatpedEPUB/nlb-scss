@@ -643,6 +643,69 @@ cccccccccccccccccccccccccccccccc
         <xsl:value-of select="if (count($result)) then replace(replace(replace(replace(string-join($result,''),'&#10; ',' &#10;'),' +',' '),'(^ | $)',''),'^&#10;+','') else ()"/>
     </xsl:function>
     
+ <xsl:function name="nlb:strings-to-lines-always-break" as="xs:string*">
+        <xsl:param name="strings" as="xs:string*"/>
+        <xsl:param name="line-length" as="xs:integer"/>
+        <xsl:param name="try-length" as="xs:integer"/>
+        
+        <xsl:variable name="result" as="xs:string*">
+            <xsl:analyze-string select="string-join($strings,' ')" regex=".{concat('{',$try-length,'}')}">
+                <xsl:matching-substring>
+                    <xsl:sequence select="."/>
+                </xsl:matching-substring>
+                <xsl:non-matching-substring>
+                    <xsl:sequence select="."/>
+                </xsl:non-matching-substring>
+            </xsl:analyze-string>
+        </xsl:variable>
+        
+        <xsl:sequence select="if ($try-length &gt; 1 and count($result[nlb:braille-length(.) &gt; $line-length])) then nlb:strings-to-lines-always-break($strings, $line-length, $try-length - 1) else $result"/>
+    </xsl:function>
+    
+    <xsl:function name="nlb:strings-to-lines" as="xs:string*">
+        <xsl:param name="strings" as="xs:string*"/>
+        <xsl:param name="line-length" as="xs:integer"/>
+        <xsl:param name="break-words" as="xs:string"/> <!-- never | avoid | always -->
+        
+        <xsl:if test="not($break-words = ('never','avoid','always'))">
+            <xsl:message select="concat('in nlb:strings-to-lines, the break-words parameter must be either ''never'', ''avoid'', or ''always''. Was: ''',$break-words,'''')" terminate="yes"/>
+        </xsl:if>
+        
+        <xsl:choose>
+            <xsl:when test="$break-words = 'always'">
+                <xsl:sequence select="nlb:strings-to-lines-always-break($strings, $line-length, $line-length)"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:choose>
+                    <xsl:when test="$break-words = 'never' and count($strings[nlb:braille-length(.) &gt; $line-length])">
+                        <xsl:sequence select="()"/>
+                    </xsl:when>
+                    <xsl:when test="nlb:braille-length($strings[1]) &gt; $line-length">
+                        <xsl:variable name="first-string" select="replace($strings[1], '&#10;', '')"/>
+                        <xsl:variable name="braille-extras" select="max((floor($line-length div 3),nlb:braille-length($first-string) - string-length($first-string)))"/>
+                        <xsl:sequence select="nlb:strings-to-lines((tokenize(replace($first-string,concat('^(.{',$line-length - $braille-extras,'})'),'$1 '),' '), $strings[position() &gt; 1]), $line-length, $break-words)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:variable name="first-line" as="xs:string?">
+                            <xsl:variable name="potential-lines" as="xs:string*">
+                                <xsl:for-each select="reverse(1 to count($strings))">
+                                    <xsl:sequence select="replace(string-join($strings[position() &lt;= current()],' '),'^&#10;','')"/>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:sequence select="($potential-lines[nlb:braille-length(.) &lt;= $line-length and not(contains(.,'&#10;'))])[1]"/>
+                        </xsl:variable>
+                        <xsl:sequence select="$first-line"/>
+                        
+                        <xsl:variable name="remaining-strings" select="$strings[position() &gt; count(tokenize($first-line,'\s+'))]"/>
+                        <xsl:if test="count($remaining-strings)">
+                            <xsl:sequence select="nlb:strings-to-lines($remaining-strings, $line-length, $break-words)"/>
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
      <xsl:function name="nlb:fit-name-to-lines" as="xs:string*">
         <xsl:param name="name" as="xs:string"/>
         <xsl:param name="lines-available" as="xs:integer"/>
@@ -675,7 +738,7 @@ cccccccccccccccccccccccccccccccc
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xsl:function name="nlb:author-lines" as="xs:string*">
         <xsl:param name="authors" as="xs:string*"/>
         <xsl:param name="line-length" as="xs:integer"/>
