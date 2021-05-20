@@ -324,7 +324,7 @@
        
                 <xsl:call-template name="row">
                    
-                    <xsl:with-param name="content" select="$author-lines[1]"/>
+                    <xsl:with-param name="content" select="$author-lines"/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 </xsl:call-template>
            
