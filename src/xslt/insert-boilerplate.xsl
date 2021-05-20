@@ -643,6 +643,38 @@ cccccccccccccccccccccccccccccccc
         <xsl:value-of select="if (count($result)) then replace(replace(replace(replace(string-join($result,''),'&#10; ',' &#10;'),' +',' '),'(^ | $)',''),'^&#10;+','') else ()"/>
     </xsl:function>
     
+     <xsl:function name="nlb:fit-name-to-lines" as="xs:string*">
+        <xsl:param name="name" as="xs:string"/>
+        <xsl:param name="lines-available" as="xs:integer"/>
+        <xsl:param name="line-length" as="xs:integer"/>
+        <!-- returns: ( [true|false], line1?, ..., lineN? ) -->
+        
+        <xsl:variable name="tokenized-name" select="tokenize($name,' +')"/>
+        
+        <xsl:variable name="last-name" select="if (contains($name,',')) then substring-before($name,',') else $tokenized-name[position() &gt; 1][last()]"/>
+        <xsl:variable name="first-name" select="if (contains($name,',')) then tokenize(normalize-space(substring-after($name,',')),' +')[1] else $tokenized-name[1]"/>
+        <xsl:variable name="middle-name" select="if (contains($name,',')) then tokenize(normalize-space(substring-after($name,',')),' +')[position() &gt; 1] else $tokenized-name[not(position() = (1,last()))]"/>
+        
+        <xsl:variable name="tokenized-first-middle-last" select="($first-name, $middle-name, $last-name)"/>
+        
+        <xsl:variable name="full-name-never-break" select="nlb:strings-to-lines($tokenized-first-middle-last, $line-length, 'never')"/>
+        <xsl:variable name="full-name-avoid-break" select="nlb:strings-to-lines($tokenized-first-middle-last, $line-length, 'avoid')"/>
+        
+        <xsl:choose>
+            <xsl:when test="count($tokenized-name) = 0">
+                <xsl:sequence select="'true'"/>
+                <xsl:sequence select="()"/>
+            </xsl:when>
+            <xsl:when test="count($full-name-never-break) &gt; 0 and count($full-name-never-break) &lt;= $lines-available">
+                <xsl:sequence select="'true'"/>
+                <xsl:sequence select="$full-name-never-break"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="string(count($full-name-avoid-break) le $lines-available)"/>
+                <xsl:sequence select="$full-name-avoid-break[position() le $lines-available]"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     <xsl:function name="nlb:author-lines" as="xs:string*">
         <xsl:param name="authors" as="xs:string*"/>
         <xsl:param name="line-length" as="xs:integer"/>
