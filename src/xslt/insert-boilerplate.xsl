@@ -662,6 +662,7 @@ cccccccccccccccccccccccccccccccc
         <xsl:sequence select="if ($try-length &gt; 1 and count($result[nlb:braille-length(.) &gt; $line-length])) then nlb:strings-to-lines-always-break($strings, $line-length, $try-length - 1) else $result"/>
     </xsl:function>
     
+    
     <xsl:function name="nlb:strings-to-lines" as="xs:string*">
         <xsl:param name="strings" as="xs:string*"/>
         <xsl:param name="line-length" as="xs:integer"/>
