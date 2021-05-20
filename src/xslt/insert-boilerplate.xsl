@@ -334,7 +334,7 @@
             <xsl:when test="count($author-lines) &gt 1">
                 <xsl:sequence select="('true')"/>
             </xsl:when>
-          </xsl:choose>->
+          </xsl:choose>-->
                   
 
             <!-- 2 empty rows before title -->
