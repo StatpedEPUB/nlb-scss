@@ -571,7 +571,17 @@ cccccccccccccccccccccccccccccccc
         <xsl:element name="{nlb:level-element-name($namespace-uri, /*)}" namespace="{$namespace-uri}">
             <xsl:attribute name="class" select="'pef-about'"/>
             <xsl:element name="h1" namespace="{$namespace-uri}">
-                <xsl:text>Merknad til punktskriftutgaven</xsl:text>
+             <xsl:choose>
+                <xsl:when test="$language-id = 'BOKMÅL'">
+                    <xsl:text>Merknad til punktskriftutgaven</xsl:text>
+                </xsl:when>
+                <xsl:when test="$language-id = 'NYNORSK'">
+                 <xsl:text>Merknad til punktskriftutgåva</xsl:text>
+                 </xsl:when>
+                 <xsl:otherwise>
+                  <xsl:text>Merknad til punktskriftutgaven</xsl:text>
+                 </xsl:otherwise>
+           </xsl:choose>
             </xsl:element>
            
         
