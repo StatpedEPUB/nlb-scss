@@ -250,7 +250,18 @@
 
         </xsl:variable>
          <xsl:variable name="utgave" as="xs:string*">
-              <xsl:sequence select="concat('Utgave  ', $utgave-nummer)"/>          
+          <xsl:choose>
+                <xsl:when test="$language-id = 'BOKMÅL'">
+                    <xsl:sequence select="concat('Utgave  ', $utgave-nummer)"/>    
+                </xsl:when>
+                <xsl:when test="$language-id = 'NYNORSK'">
+                <xsl:sequence select="concat('Utgåve  ', $utgave-nummer)"/>    
+                 </xsl:when>
+                 <xsl:otherwise>
+                 <xsl:sequence select="concat('Utgave  ', $utgave-nummer)"/>    
+                 </xsl:otherwise>
+           </xsl:choose>
+                   
         </xsl:variable>
 
 
