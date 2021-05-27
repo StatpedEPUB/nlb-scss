@@ -141,7 +141,7 @@
                     <xsl:sequence select="(//dtbook:frontmatter/dtbook:doctitle//*[@class='subtitle'])[1]/nlb:element-text(.)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:sequence select="(//html:body//html:*[tokenize(@epub:type,'\s+')='subtitle'])[1]/nlb:element-text(.)"/>
+                         <xsl:sequence select="//html:head/html:meta[@name = 'dc:title.subTitle']/string(@content)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -368,15 +368,20 @@
 
               <!-- TITLE ON LINE 6-->  
 
-              <xsl:call-template name="SimpleStringLoop">
-              <xsl:with-param name="input" select="$fulltitle"/>
-              <xsl:with-param name="classes" select="'Innrykk-5'"/>
-              <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+              <xsl:call-template name="row">
+                <xsl:with-param name="input" select="$fulltitle"/>
+               
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
         
-       </xsl:call-template>
+              </xsl:call-template>
      
 
+              <xsl:call-template name="row">
+                <xsl:with-param name="input" select="$subtitle"/>
+               
+                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
         
+              </xsl:call-template>
        
           
               <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
