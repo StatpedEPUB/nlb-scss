@@ -377,12 +377,7 @@
      
          <xsl:choose>
             <xsl:when test="count($subtitle) = 0">
-                 <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'tom '"/>
-               
-                <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-        
-              </xsl:call-template>
+                <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             </xsl:when>
                <xsl:when test="count($subtitle) &gt; 0">
                  <xsl:call-template name="row">
