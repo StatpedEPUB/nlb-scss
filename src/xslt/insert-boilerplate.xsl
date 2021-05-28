@@ -214,8 +214,9 @@
                     <xsl:otherwise>
                         <xsl:sequence select="'BOKMÅL'"/>
                      </xsl:otherwise>
+                      </xsl:choose>
                 </xsl:otherwise>
-               </xsl:choose>
+              
         </xsl:variable>
 
         <xsl:variable name="utgave-nummer" as="xs:string*">
