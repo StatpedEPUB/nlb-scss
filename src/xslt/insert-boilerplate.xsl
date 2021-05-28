@@ -197,18 +197,24 @@
             <xsl:otherwise>
                 <xsl:choose>
                      <xsl:when test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nn'">
-                        <xsl:sequence select="'NYNORSK'"/>
-                     </xsl:when>
-                     <xsl:otherwise>
+                         <xsl:sequence select="'NYNORSK'"/>
+                    </xsl:when>
+                      <xsl:when test="//html:head/html:meta[@name='dc:language']/string(@content)= 'nb'">
+                         <xsl:sequence select="'BOKMÅL'"/>
+                    </xsl:when>
+                     <xsl:when test="//html:head/html:meta[@name='dc:language']/string(@content)= 'en'">
+                         <xsl:sequence select="'ENGELSK'"/>
+                    </xsl:when>
+                     <xsl:when test="//html:head/html:meta[@name='dc:language']/string(@content)= 'de'">
+                         <xsl:sequence select="'TYSK'"/>
+                    </xsl:when>
+                    <xsl:when test="//html:head/html:meta[@name='dc:language']/string(@content)= 'fr'">
+                         <xsl:sequence select="'FRANSK'"/>
+                    </xsl:when>
+                    <xsl:otherwise>
                         <xsl:sequence select="'BOKMÅL'"/>
-                    </xsl:otherwise>
-                 </xsl:choose>
-                 <!--  <xsl:sequence select="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)"/> -->
-                
-                 <!--  <xsl:sequence select="//html:head/html:meta[@name='dc:language']/string(@content)"/> -->
-                   
-            </xsl:otherwise>
-        </xsl:choose>
+                     </xsl:otherwise>
+               </xsl:choose>
         </xsl:variable>
 
         <xsl:variable name="utgave-nummer" as="xs:string*">
