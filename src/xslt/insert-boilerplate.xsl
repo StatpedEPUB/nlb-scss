@@ -214,6 +214,7 @@
                     <xsl:otherwise>
                         <xsl:sequence select="'BOKMÅL'"/>
                      </xsl:otherwise>
+                </xsl:otherwise>
                </xsl:choose>
         </xsl:variable>
 
