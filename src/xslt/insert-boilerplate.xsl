@@ -175,6 +175,18 @@
                     <xsl:when test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)= 'nn'">
                          <xsl:sequence select="'NYNORSK'"/>
                     </xsl:when>
+                      <xsl:when test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)= 'nb'">
+                         <xsl:sequence select="'BOKMÅL'"/>
+                    </xsl:when>
+                     <xsl:when test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)= 'en'">
+                         <xsl:sequence select="'ENGELSK'"/>
+                    </xsl:when>
+                     <xsl:when test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)= 'de'">
+                         <xsl:sequence select="'TYSK'"/>
+                    </xsl:when>
+                    <xsl:when test="//dtbook:head/dtbook:meta[@name = 'dc:language']/string(@content)= 'fr'">
+                         <xsl:sequence select="'FRANSK'"/>
+                    </xsl:when>
                     <xsl:otherwise>
                         <xsl:sequence select="'BOKMÅL'"/>
                      </xsl:otherwise>
