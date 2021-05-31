@@ -332,11 +332,19 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
       
-       
-           
-  <xsl:for-each select="$author-lines">
-  <xsl:variable name="parent-position" select="position()" />
-     <xsl:choose>
+       <xsl:variable name="nb_char" select="string-length($input)-string-length(translate($author,';',''))"/>
+       <xsl:choose>
+       <xsl:when test="$nb_char !=0">  <!-- delimiter found use old style input from bibliofil -->
+        <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="concat($author,' mfl.')"/>
+                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                       <xsl:with-param name="inline" select="true()"/>
+                </xsl:call-template>
+      </xsl:when>
+    <xsl:otherwise>       
+        <xsl:for-each select="$author-lines">
+        <xsl:variable name="parent-position" select="position()" />
+        <xsl:choose>
             <xsl:when test="$parent-position = 1 and count($author-lines) = 1">
              <xsl:call-template name="row">
                     <xsl:with-param name="content" select="."/>
@@ -353,6 +361,8 @@
             </xsl:when>
           </xsl:choose>
          </xsl:for-each>
+        </xsl:otherwise>
+      </xsl:choose>  
 
          <!---   <xsl:choose>
             <xsl:when test="count($author-lines) &gt 1">
@@ -485,8 +495,7 @@ cccccccccccccccccccccccccccccccc
        <xsl:call-template name="SimpleStringLoop">
               <xsl:with-param name="input" select="$author"/>
               <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
-        
-       </xsl:call-template>--> 
+        </xsl:call-template>--> 
      
             <xsl:choose>
                 <xsl:when test="$language-id = 'BOKMÅL'">
