@@ -336,7 +336,7 @@
      <xsl:variable name="nb_char" select="string-length($author)-string-length(translate($author,';',''))"/>
       
        <xsl:choose>
-       <xsl:when test="$nb_char !=0 and count($authors) = 1">  <!-- delimiter found use old style input from bibliofil -->
+       <xsl:when test="$nb_char !=0 and count($author) = 1">  <!-- delimiter found use old style input from bibliofil -->
         <xsl:variable name="v2" select="substring-before($author, ';')"/>
         <xsl:call-template name="row">
                     <xsl:with-param name="content" select="concat($v2,' mfl.')"/>
