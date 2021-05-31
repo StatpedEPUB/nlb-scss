@@ -332,7 +332,7 @@
             <xsl:call-template name="empty-row"><xsl:with-param name="namespace-uri" select="$namespace-uri"/></xsl:call-template>
             <xsl:variable name="lines-used" select="3"/>
       
-       <xsl:variable name="nb_char" select="string-length($input)-string-length(translate($author,';',''))"/>
+       <xsl:variable name="nb_char" select="string-length($author)-string-length(translate($author,';',''))"/>
        <xsl:choose>
        <xsl:when test="$nb_char !=0">  <!-- delimiter found use old style input from bibliofil -->
         <xsl:call-template name="row">
