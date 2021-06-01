@@ -337,16 +337,17 @@
       
        <xsl:choose>
        <xsl:when test="count($author)=1">  <!-- delimiter found use old style input from bibliofil -->            
-      <!--  <xsl:when test="contains($author,';')"> delimiter found use old style input from bibliofil -->
-               
+         <xsl:if test="contains($author,';')"> delimiter found use old style input from bibliofil -->
+          
         <xsl:variable name="v2" select="substring-before($author, ';')"/>
         <xsl:call-template name="row">
                     <xsl:with-param name="content" select="concat($v2,' mfl.')"/>
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                        <xsl:with-param name="inline" select="true()"/>
                 </xsl:call-template>
+                </xsl:if>
        </xsl:when>
-    <xsl:otherwise>       
+       <xsl:otherwise>       
         <xsl:for-each select="$author-lines">
         <xsl:variable name="parent-position" select="position()" />
         <xsl:choose>
