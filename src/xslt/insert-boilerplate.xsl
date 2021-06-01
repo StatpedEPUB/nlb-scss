@@ -337,7 +337,7 @@
       
        <xsl:choose>
        <xsl:when test="count($author)=1">  <!-- delimiter found use old style input from bibliofil -->            
-         <xsl:if test="contains($author,';')"> delimiter found use old style input from bibliofil -->
+         <xsl:if test="contains($author,';')"> 
           
         <xsl:variable name="v2" select="substring-before($author, ';')"/>
         <xsl:call-template name="row">
