@@ -346,6 +346,14 @@
                        <xsl:with-param name="inline" select="true()"/>
                 </xsl:call-template>
                 </xsl:if>
+                  <xsl:if test="not(contains($author,';'))">
+                   <xsl:call-template name="row">
+                    <xsl:with-param name="content" select="$author"/>
+                    <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
+                       <xsl:with-param name="inline" select="true()"/>
+                </xsl:call-template>
+
+             </xsl:if>
        </xsl:when>
        <xsl:otherwise>       
         <xsl:for-each select="$author-lines">
