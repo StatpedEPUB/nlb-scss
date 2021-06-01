@@ -345,8 +345,7 @@
                     <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                        <xsl:with-param name="inline" select="true()"/>
                 </xsl:call-template>
-        
-    </xsl:when>
+       </xsl:when>
     <xsl:otherwise>       
         <xsl:for-each select="$author-lines">
         <xsl:variable name="parent-position" select="position()" />
