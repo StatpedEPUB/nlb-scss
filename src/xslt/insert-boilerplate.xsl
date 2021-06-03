@@ -528,6 +528,7 @@ cccccccccccccccccccccccccccccccc
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
+               <xsl:call-template name="row">
                <xsl:with-param name="content" select="'Ordforklaringer og stikkord finner du som regel etter teksten de tilhører, etter eventuelle bilder. '"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
