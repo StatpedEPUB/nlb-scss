@@ -524,7 +524,7 @@ cccccccccccccccccccccccccccccccc
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
             <xsl:call-template name="row">
-                <xsl:with-param name="content" select="'Tekst og bilder kan være flyttet til en annen side for å unngå å bryte opp løpende tekst."/>
+                <xsl:with-param name="content" select="'Tekst og bilder kan være flyttet til en annen side for å unngå å bryte opp løpende tekst.'"/>
                 <xsl:with-param name="namespace-uri" select="$namespace-uri"/>
                 <xsl:with-param name="inline" select="true()"/>
             </xsl:call-template>
