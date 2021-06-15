@@ -16,6 +16,8 @@ module.exports = function (grunt) {
 					'dist/css/html.css': 'src/scss/html.scss',
 					'dist/css/ncc.css': 'src/scss/ncc.scss',
 					'dist/css/nettleserbok.css': 'src/scss/nettleserbok.scss',
+					'dist/css/statped.css': 'src/scss/statped.scss',
+					'dist/css/statped_html.css': 'src/scss/statped_html.scss',
 					'docs/assets/css/styles.css': 'src/scss/docs.scss'
 				}
 			}
@@ -41,20 +43,27 @@ module.exports = function (grunt) {
 					'dist/css/html.min.css': 'dist/css/html.css',
 					'dist/css/ncc.min.css': 'dist/css/ncc.css',
 					'dist/css/nettleserbok.min.css': 'dist/css/nettleserbok.css',
+					'dist/css/statped.min.css': 'dist/css/statped.css',
+					'dist/css/statped_html.min.css': 'dist/css/statped_html.css'
 				}
 			}
 		},
 		copy: {
 			main: {
-			  files: [
-				{src: ['src/js/rb_smil_emulator.js'], dest: 'dist/js/rb_smil_emulator.js'},
-				// {src: ['src/js/rb_smil_emulator.js'], dest: 'dist/tests/Nettleserbok/628810/rb_smil_emulator.js'},
-				// {src: ['src/js/rb_smil_emulator.js'], dest: 'dist/tests/Nettleserbok/852345/rb_smil_emulator.js'},
-			  ],
+				cwd: 'src',
+				src: [ '**/*.js' ],
+				dest: 'dist',
+				expand: true
 			},
+			secondary: {
+				cwd: 'dist',
+				src: [ '**/*.css', '**/*.css.map' ],
+				dest: 'tests',
+				expand: true
+			}
 		},
 		clean: {
-			dist: ['dist/css/*','dist/js/*'] // Clean all
+			dist: ['dist/css/*','dist/js/*','tests/**/*.js','tests/**/*.css'] // Clean all
 		},
 		watch: {
 			scripts: {
@@ -73,5 +82,5 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['clean', 'sass', 'postcss', 'copy']);
+	grunt.registerTask('default', ['clean', 'sass', 'postcss', 'copy:main', 'copy:secondary']);
 };

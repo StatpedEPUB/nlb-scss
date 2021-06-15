@@ -1,0 +1,237 @@
+/*! Statped CSS */
+@charset "UTF-8";
+
+@import "includes/core";
+//@import "includes/darktheme";
+
+$statped-gray: $gray-300;
+$statped-beige: rgb(255, 232, 196);
+$statped-li-margin-bottom: 8px;
+
+/* Begin Statped.SCSS */
+body {
+    @include make-container();
+    @extend #content;
+
+    /* Table caption default on top
+     * ---------------------------------------------------------- */
+    table {
+        caption-side: top !important;
+    }
+
+    /* Images
+     * ---------------------------------------------------------- */
+    img {
+        @extend .img-fluid, .rounded;
+        margin-bottom: $height !important;
+    }
+    
+    figure, .imggroup {
+        @extend .figure;
+        width: 100%;
+        margin-bottom: 30px;
+        border: 3px solid $statped-gray;
+    
+        @include media-breakpoint-only('md') {
+            margin-bottom: 36px;
+        }
+    
+        @include media-breakpoint-up('lg') {
+            margin-bottom: 45px;
+        }
+    
+        img {
+            @extend .figure-img, .img-fluid, .rounded, .mr-auto, .d-block;
+            max-width: 100%;
+    
+            @include media-breakpoint-up('md') {
+                margin-left: 0 !important;
+                max-width: 70%;
+            }
+        }
+    
+        figcaption, .caption {
+            @extend .figure-caption;
+            color: $dark;
+            min-height: 15px;
+            margin-top: 15px;
+            padding: 12px;
+
+            @include media-breakpoint-up('md') {
+                text-align: left !important;
+                margin-left: 0 !important;
+            }
+    
+            @include media-breakpoint-only('md') {
+                margin-top: 20px;
+            }
+        
+            @include media-breakpoint-up('lg') {
+                min-height: 25px;
+            }
+        }
+    }
+    figure > aside {
+        @extend .ml-0;
+    }
+
+    .colophon, [*|type="colophon"] {
+        .precedingemptyline {
+            margin-top: $line-height-sm+rem !important;
+        }
+    
+        p {
+            @extend .my-0;
+        }
+    }
+ 
+    .page-front, .pagenum {
+        display: none !important;
+    }
+    
+    span.sentence, 
+    span.lic, 
+    span.page-normal, 
+    span.page-special,  
+    h1, h2, h3, h4, h5, h6, 
+    div.doctitle, 
+    div.docauthor,
+    div.imggroup div.caption, 
+    table tr td,
+    ul,
+    p {
+        background-color: inherit;
+
+        a {
+            @extend .text-dark;
+        }
+        a:hover {
+            background-color: #ff0;
+            text-decoration: none;
+        }
+    }
+    
+    ul.plain, ul.pl {
+        list-style-type: none;
+    }
+    div.oppgaver-li-oppgavetekst, div.underoppgaver-li-oppgavetekst, div.docauthor {
+        @extend p;
+    }
+    div.produsent {
+        @extend .blockquote;
+    }
+    .start-info {
+        margin-bottom: $nlb-p-margin-bottom-sm;
+    
+        @include media-breakpoint-only('sm') {
+            margin-bottom: $nlb-p-margin-bottom-md;
+        }
+    
+        @include media-breakpoint-up('md') {
+            margin-bottom: $nlb-p-margin-bottom-lg;
+        }
+    
+    }
+    
+    .generisk-ramme {
+        @include nlb-default-frame();
+    
+        @include media-breakpoint-only('xs') {
+            overflow-wrap: break-word;
+        }
+
+        @include nlb-set-paragraph-font($nlb-p-margin-bottom-sm, $nlb-p-font-size-sm, $nlb-p-font-size-lead-sm);
+    
+        @include media-breakpoint-only('md') {
+            @include nlb-set-paragraph-font($nlb-p-margin-bottom-md, $nlb-p-font-size-md, $nlb-p-font-size-lead-md);
+        }
+    
+        @include media-breakpoint-up('lg') {
+            @include nlb-set-paragraph-font($nlb-p-margin-bottom-lg, $nlb-p-font-size-lg, $nlb-p-font-size-lead-lg);
+        }
+    }
+    
+    .ramme {
+        @include nlb-frame();
+    
+        &.bg-red {
+            @include nlb-color($frame-red-bg, darken($frame-red-bg, 35%), $dark);
+        }
+        
+        &.bg-blue {
+            @include nlb-color($frame-blue-bg, darken($frame-blue-bg, 35%), $dark);
+        }
+        
+        &.bg-yellow {
+            @include nlb-color($frame-yellow-bg, darken($frame-yellow-bg, 35%), $dark);
+        }
+        
+        &.bg-gray {
+            @include nlb-color($statped-gray, darken($statped-gray, 35%), $dark);
+        }
+
+        &.bg-beige {
+            @include nlb-color($statped-beige, darken($statped-beige, 35%), $dark);
+        }
+    }
+
+    ol, ul {
+        padding-inline-start: 0;
+        margin-left: 45px;
+
+        @include media-breakpoint-only('sm') {
+            margin-bottom: $nlb-p-margin-bottom-sm*0.75;
+        }
+    
+        @include media-breakpoint-only('md') {
+            margin-bottom: $nlb-p-margin-bottom-md*0.75;
+        }
+    
+        @include media-breakpoint-up('lg') {
+            margin-bottom: $nlb-p-margin-bottom-lg*0.75;
+        }
+
+        li {
+            margin-left: 0;
+            margin-bottom: $statped-li-margin-bottom;
+            @include media-breakpoint-only('sm') {
+                margin-bottom: $statped-li-margin-bottom*1.25;
+            }
+            @include media-breakpoint-up('md') {
+                margin-bottom: $statped-li-margin-bottom*1.5;
+            }
+            
+            ol, ul {
+                margin-left: 30px !important;
+            }
+        }
+
+        &.plain {
+            list-style-type: none;
+        }
+    }
+    section.poem {
+        p {
+            margin-bottom: $statped-li-margin-bottom;
+            @include media-breakpoint-only('sm') {
+                margin-bottom: $statped-li-margin-bottom*1.25;
+            }
+            @include media-breakpoint-up('md') {
+                margin-bottom: $statped-li-margin-bottom*1.5;
+            }
+        }
+        .linegroup {
+            margin-bottom: $statped-li-margin-bottom;
+            @include media-breakpoint-only('sm') {
+                margin-bottom: $statped-li-margin-bottom*1.25;
+            }
+            @include media-breakpoint-up('md') {
+                margin-bottom: $statped-li-margin-bottom*1.5;
+            }
+            .line {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+/* End Statped.SCSS */
