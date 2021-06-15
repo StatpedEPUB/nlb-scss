@@ -13,6 +13,12 @@ body {
     @include make-container();
     @extend #content;
 
+    /* Table caption default on top
+     * ---------------------------------------------------------- */
+    table {
+        caption-side: top !important;
+    }
+
     /* Images
      * ---------------------------------------------------------- */
     img {
