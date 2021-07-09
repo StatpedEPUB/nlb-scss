@@ -329,7 +329,7 @@ section {
             text-indent: -2;
             
             & a::after {
-                    content: " " leader("⠄", $page-width - if($show-print-page-numbers, 2, 1) - 1, right) " " target-counter(attr(href), page);
+                    content: " " leader("⠄", $page-width - if($show-print-page-numbers, 2, 1) - 2, right) " " target-counter(attr(href), page);
                     margin-left: 2;
                     margin-top: 0;
                     text-indent: -2;
