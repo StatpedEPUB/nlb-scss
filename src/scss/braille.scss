@@ -322,8 +322,8 @@ section {
     
     li {
             display: block;
-           margin-left: 2;
-         
+           /* margin-left: 2;*/
+           -obfl-left-text-indent: 2;
             -obfl-right-text-indent: 3;
           /*  margin-right: 3; */
             margin-top: 0;
